@@ -254,7 +254,7 @@ session_start();
     </main>
     
     <footer>
-        <p>جميع الحقوق محفوظة &copy; 2023 - متجرنا الإلكتروني</p>
+        <p>جميع الحقوق محفوظة &copy; 2025 - متجرنا الإلكتروني</p>
     </footer>
     
     <script src="static/script.js"></script>

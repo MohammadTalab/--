@@ -213,7 +213,7 @@ $orders = getUserOrders($_SESSION['user_id']);
     </main>
     
     <footer>
-        <p>جميع الحقوق محفوظة &copy; 2023 - متجرنا الإلكتروني</p>
+        <p>جميع الحقوق محفوظة &copy; 2025 - متجرنا الإلكتروني</p>
     </footer>
 </body>
 </html>
