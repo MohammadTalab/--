@@ -35,7 +35,7 @@ session_start();
             transform: translateX(-50%);
             width: 80px;
             height: 3px;
-            background-color: #3498db;
+            background-color:rgb(68, 0, 0);
         }
         
         .about-container p {
@@ -65,7 +65,7 @@ session_start();
             transform: translateX(-50%);
             width: 60px;
             height: 3px;
-            background-color: #3498db;
+            background-color:rgb(68, 0, 0);
         }
         
         .team-grid {
@@ -101,7 +101,7 @@ session_start();
         
         .team-member:hover img {
             transform: scale(1.05);
-            border-color: #3498db;
+            border-color:rgb(68, 0, 0);
         }
         
         .team-member h3 {
@@ -126,7 +126,7 @@ session_start();
             display: inline-block;
             width: 32px;
             height: 32px;
-            background-color: #3498db;
+            background-color:rgb(68, 0, 0);
             color: white;
             border-radius: 50%;
             text-align: center;
@@ -135,7 +135,7 @@ session_start();
         }
         
         .social-links a:hover {
-            background-color: #2980b9;
+            background-color:rgb(68, 0, 0);
             transform: scale(1.1);
         }
         
@@ -144,7 +144,7 @@ session_start();
             padding: 30px;
             background-color: #f8f9fa;
             border-radius: 10px;
-            border-right: 4px solid #3498db;
+            border-right: 4px solid rgb(68, 0, 0);
         }
         
         .mission-section h2 {
