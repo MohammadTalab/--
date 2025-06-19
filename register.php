@@ -44,7 +44,7 @@ session_start();
         }
         
         .form-footer a {
-            color: #3498db;
+            color: rgb(68, 0, 0);
             text-decoration: none;
         }
     </style>

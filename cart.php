@@ -158,7 +158,7 @@ $total = $subtotal + $shipping + $tax;
             display: block;
             width: 100%;
             padding: 12px;
-            background-color: #3498db;
+            background-color:rgb(68, 0, 0);
             color: white;
             text-align: center;
             text-decoration: none;
@@ -168,7 +168,7 @@ $total = $subtotal + $shipping + $tax;
         }
         
         .checkout-btn:hover {
-            background-color: #2980b9;
+            background-color:rgb(68, 0, 0);
         }
     </style>
 </head>

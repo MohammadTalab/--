@@ -84,7 +84,7 @@ $orders = getUserOrders($_SESSION['user_id']);
         .status-processing { background-color: #f39c12; }
         .status-shipped { background-color: #3498db; }
         .status-delivered { background-color: #27ae60; }
-        .status-cancelled { background-color: #e74c3c; }
+        .status-cancelled { background-color:rgb(68, 0, 0); }
         
         .order-products {
             display: grid;
