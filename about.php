@@ -223,7 +223,7 @@ session_start();
                     </div>
                     <div class="team-member">
                         <img src="team2.jpg" alt="عضو الفريق 2">
-                        <h3>ميي </h3>
+                        <h3>مي عامر</h3>
                         <p>مديرة المبيعات</p>
                         <div class="social-links">
                             <a href="#" title="تويتر">ت</a>
@@ -241,7 +241,7 @@ session_start();
                     </div>
                     <div class="team-member">
                         <img src="team4.jpg" alt="عضو الفريق 4">
-                        <h3>فوفو حداد</h3>
+                        <h3>فائقة حداد</h3>
                         <p>مديرة التسويق</p>
                         <div class="social-links">
                             <a href="#" title="تويتر">ت</a>
