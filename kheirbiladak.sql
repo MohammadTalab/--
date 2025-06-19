@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306 
--- Generation Time: 14 يونيو 2025 الساعة 18:31
+-- Generation Time: 18 يونيو 2025 الساعة 23:24
 -- إصدار الخادم: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `kheirbiladak1`
+-- Database: `kheirbiladak`
 --
 
 -- --------------------------------------------------------
@@ -33,6 +33,15 @@ CREATE TABLE `category` (
   `img` int(255) NOT NULL,
   `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `category`
+--
+
+INSERT INTO `category` (`c_id`, `name`, `img`, `description`) VALUES
+(1, 'إلكترونيات', 255, 'أجهزة إلكترونية متنوعة'),
+(2, 'ملابس', 255, 'ملابس رجالية ونسائية'),
+(3, 'مستلزمات منزلية', 255, 'أدوات ومستلزمات للمنزل');
 
 -- --------------------------------------------------------
 
@@ -63,6 +72,13 @@ CREATE TABLE `order` (
   `u_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- إرجاع أو استيراد بيانات الجدول `order`
+--
+
+INSERT INTO `order` (`O_id`, `order_date`, `address`, `status`, `price`, `u_id`) VALUES
+(3, '2025-06-16', 'حزما, حزما, 504', 'قيد المعالجة', 8069.95, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -75,6 +91,14 @@ CREATE TABLE `order_product` (
   `count` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `order_product`
+--
+
+INSERT INTO `order_product` (`p_id`, `o_id`, `count`, `price`) VALUES
+(1, 3, 2, 999.99),
+(2, 3, 2, 2499.99);
 
 -- --------------------------------------------------------
 
@@ -90,6 +114,18 @@ CREATE TABLE `product` (
   `price` decimal(10,2) NOT NULL,
   `c_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `product`
+--
+
+INSERT INTO `product` (`p_id`, `name`, `description`, `img`, `price`, `c_id`) VALUES
+(1, 'هاتف ذكي', 'هاتف ذكي بمواصفات عالية', 'phone.jpg', 999.99, 1),
+(2, 'لابتوب', 'جهاز لابتوب للعمل والدراسة', 'laptop.jpg', 2499.99, 1),
+(3, 'قميص قطني', 'قميص قطني مريح وأنيق', 'shirt.jpg', 89.99, 2),
+(4, 'حذاء رياضي', 'حذاء رياضي مريح للمشي', 'shoes.jpg', 199.99, 2),
+(5, 'طقم أواني طبخ', 'طقم أواني طبخ من الستانلس ستيل', 'cookware.jpg', 299.99, 3),
+(6, 'مكنسة كهربائية', 'مكنسة كهربائية قوية للتنظيف', 'vacuum.jpg', 399.99, 3);
 
 -- --------------------------------------------------------
 
@@ -110,19 +146,6 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`u_id`, `name`, `email`, `password`) VALUES
 (1, 'ali', 'ali@gmail.com', '123');
-
-INSERT INTO `category` (`c_id`, `name`, `img`, `description`) VALUES
-(1, 'إلكترونيات', 255, 'أجهزة إلكترونية متنوعة'),
-(2, 'ملابس', 255, 'ملابس رجالية ونسائية'),
-(3, 'مستلزمات منزلية', 255, 'أدوات ومستلزمات للمنزل');
-
-INSERT INTO `product` (`p_id`, `name`, `description`, `img`, `price`, `c_id`) VALUES
-(1, 'هاتف ذكي', 'هاتف ذكي بمواصفات عالية', 'phone.jpg', 999.99, 1),
-(2, 'لابتوب', 'جهاز لابتوب للعمل والدراسة', 'laptop.jpg', 2499.99, 1),
-(3, 'قميص قطني', 'قميص قطني مريح وأنيق', 'shirt.jpg', 89.99, 2),
-(4, 'حذاء رياضي', 'حذاء رياضي مريح للمشي', 'shoes.jpg', 199.99, 2),
-(5, 'طقم أواني طبخ', 'طقم أواني طبخ من الستانلس ستيل', 'cookware.jpg', 299.99, 3),
-(6, 'مكنسة كهربائية', 'مكنسة كهربائية قوية للتنظيف', 'vacuum.jpg', 399.99, 3);
 
 --
 -- Indexes for dumped tables
@@ -185,7 +208,7 @@ ALTER TABLE `discount`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `O_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `O_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `product`
