@@ -11,7 +11,7 @@ session_start();
     <link rel="stylesheet" href="static/styles.css">
     <style>
         .about-container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 50px auto;
             padding: 30px;
             background-color: white;
