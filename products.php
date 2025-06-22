@@ -145,7 +145,7 @@ $products = getAllProducts();
             <?php if (!empty($products)): ?>
                 <?php foreach($products as $product): ?>
                     <div class="product-card" data-product-id="<?php echo $product['p_id']; ?>">
-                        <img src="<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
+                        <img src="images/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
                         <h3><?php echo htmlspecialchars($product['name']); ?></h3>
                         <p style="color: #666; margin-bottom: 10px; font-size: 14px;"><?php echo htmlspecialchars($product['description']); ?></p>
                         <?php if (isset($product['category_name'])): ?>

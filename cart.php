@@ -225,7 +225,7 @@ $total = $subtotal + $shipping + $tax;
                     <?php else: ?>
                         <?php foreach ($cart_items as $item): ?>
                             <tr>
-                                <td><img src="<?php echo htmlspecialchars($item['img']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>"></td>
+                                <td><img src="images/<?php echo htmlspecialchars($item['img']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>"></td>
                                 <td>
                                     <strong><?php echo htmlspecialchars($item['name']); ?></strong><br>
                                     <small><?php echo htmlspecialchars($item['description']); ?></small>

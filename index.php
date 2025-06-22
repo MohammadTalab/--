@@ -124,7 +124,7 @@ $featuredProducts = array_slice($products, 0, 3);
                 <?php if (!empty($featuredProducts)): ?>
                     <?php foreach($featuredProducts as $product): ?>
                         <div class="product-card">
-                            <img src="<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
+                            <img src="images/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
                             <h3><?php echo htmlspecialchars($product['name']); ?></h3>
                             <p class="price"><?php echo number_format($product['price'], 2); ?> شيكل</p>
                             <form method="post" style="display: inline;">

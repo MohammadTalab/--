@@ -195,7 +195,7 @@ $orders = getUserOrders($_SESSION['user_id']);
                             <div class="order-products">
                                 <?php foreach($order['products'] as $product): ?>
                                     <div class="product-item">
-                                        <img src="<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
+                                        <img src="images/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
                                         <div class="product-info">
                                             <div class="product-name"><?php echo htmlspecialchars($product['name']); ?></div>
                                             <div class="product-details">
