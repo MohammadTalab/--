@@ -10,27 +10,22 @@
 <body>
 
 <?php
-include_once('header.php');
-include_once('menu.php');
+// include_once('header.php');
+// include_once('menu.php');
 require_once('connect.php');
 
 
 $sql = "SELECT * FROM `category` ORDER BY `name`";
-$res_category = mysqli_query($coon, $sql);
+$res_category = mysqli_query($conn, $sql);
 ?>
 
-<form action="book_insert.php" method="post" enctype="multipart/form-data">
+<form action="product_insert.php" method="post" enctype="multipart/form-data">
     <table class="form">
         <caption>إضافة منتج</caption>
 
         <tr>
             <td><label for="name">اسم المنتج:</label></td>
             <td><input type="text" name="name" id="name" required></td>
-        </tr>
-
-        <tr>
-            <td><label for="publisher">صاحب المنتج:</label></td>
-            <td><input type="text" name="publisher" id="publisher" required></td>
         </tr>
 
         <tr>
@@ -58,8 +53,8 @@ $res_category = mysqli_query($coon, $sql);
         </tr>
 
         <tr>
-            <td><label for="cover">صورة المنتج:</label></td>
-            <td><input type="file" name="cover" id="cover" accept="image/*" required></td>
+            <td><label for="img">صورة المنتج:</label></td>
+            <td><input type="file" name="img" id="img" accept="image/*" required></td>
         </tr>
 
         <tr>
@@ -69,8 +64,6 @@ $res_category = mysqli_query($coon, $sql);
         </tr>
     </table>
 </form>
-
-<?php include_once('include/footer.php'); ?>
 
 </body>
 </html>
