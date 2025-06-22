@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="../style/style.css"/>
 </head>
 <body>
-
 <?php
 include_once('header.php');
 include_once('menu.php');
@@ -17,60 +16,35 @@ require_once('connect.php');
 
 $sql = "SELECT * FROM `category` ORDER BY `name`";
 $res_category = mysqli_query($coon, $sql);
+
+<?php
+include_once('header.php');
+include_once('menu.php');
+require_once('connect.php');
+
+
+$sql = "SELECT name, description, img, price FROM product ORDER BY id DESC";
+$res = mysqli_query($coon, $sql);
+
+
+if (mysqli_num_rows($res) > 0) {
+    echo '<table>';
+    echo '<caption>عرض المنتجات</caption>';
+    echo '<tr><th>اسم المنتج</th><th>الوصف</th><th>الصورة</th><th>السعر</th></tr>';
+
+    while ($row = mysqli_fetch_assoc($res)) {
+        echo '<tr>';
+        echo '<td>' . htmlspecialchars($row['name']) . '</td>';
+        echo '<td>' . nl2br(htmlspecialchars($row['description'])) . '</td>';
+        echo '<td><img src="../uploads/' . htmlspecialchars($row['img']) . '" alt="صورة المنتج"></td>';
+        echo '<td>' . number_format($row['price'], 2) . ' $</td>';
+        echo '</tr>';
+    }
+
+    echo '</table>';
+} else {
+    echo '<p style="text-align:center; margin-top:20px;">لا توجد منتجات لعرضها حالياً.</p>';
+}
 ?>
-
-<form action="book_insert.php" method="post" enctype="multipart/form-data">
-    <table class="form">
-        <caption>إضافة منتج</caption>
-
-        <tr>
-            <td><label for="name">اسم المنتج:</label></td>
-            <td><input type="text" name="name" id="name" required></td>
-        </tr>
-
-        <tr>
-            <td><label for="publisher">صاحب المنتج:</label></td>
-            <td><input type="text" name="publisher" id="publisher" required></td>
-        </tr>
-
-        <tr>
-            <td><label for="category">التصنيف:</label></td>
-            <td>
-                <select name="category" id="category" required>
-                    <option value="">اختر التصنيف</option>
-                    <?php
-                    while ($row = mysqli_fetch_assoc($res_category)) {
-                        echo "<option value='{$row['id']}'>{$row['name']}</option>";
-                    }
-                    ?>
-                </select>
-            </td>
-        </tr>
-
-        <tr>
-            <td><label for="description">الوصف:</label></td>
-            <td><textarea name="description" id="description" rows="4" cols="30"></textarea></td>
-        </tr>
-
-        <tr>
-            <td><label for="price">السعر:</label></td>
-            <td><input type="number" name="price" id="price" step="0.01" required></td>
-        </tr>
-
-        <tr>
-            <td><label for="cover">صورة المنتج:</label></td>
-            <td><input type="file" name="cover" id="cover" accept="image/*" required></td>
-        </tr>
-
-        <tr>
-            <td colspan="2" style="text-align:center;">
-                <input type="submit" name="submit" value="إرسال">
-            </td>
-        </tr>
-    </table>
-</form>
-
-<?php include_once('include/footer.php'); ?>
-
 </body>
 </html>
