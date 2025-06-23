@@ -241,7 +241,7 @@ session_start();
                     </div>
                     <div class="team-member">
                         <img src="team4.jpg" alt="عضو الفريق 4">
-                        <h3>فائقة حداد</h3>
+                        <h3>fofo حداد</h3>
                         <p>مديرة التسويق</p>
                         <div class="social-links">
                             <a href="#" title="تويتر">ت</a>
