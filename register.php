@@ -42,7 +42,7 @@ if ($_POST) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📝 تسجيل جديد - متجر خير بلادك</title>
+    <title>تسجيل جديد - متجر خير بلادك</title>
     <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
@@ -53,11 +53,11 @@ if ($_POST) {
         </div>
         <nav>
             <ul>
-                <li><a href="index.php">🏠 الرئيسية</a></li>
-                <li><a href="products.php">🛍️ المنتجات</a></li>
-                <li><a href="about.php">ℹ️ من نحن</a></li>
-                <li><a href="login.php">🔐 تسجيل الدخول</a></li>
-                <li><a href="register.php" class="active">📝 تسجيل جديد</a></li>
+                <li><a href="index.php">الرئيسية</a></li>
+                <li><a href="products.php">المنتجات</a></li>
+                <li><a href="about.php">من نحن</a></li>
+                <li><a href="login.php">تسجيل الدخول</a></li>
+                <li><a href="register.php" class="active">تسجيل جديد</a></li>
             </ul>
         </nav>
     </header>

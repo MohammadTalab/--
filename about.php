@@ -7,7 +7,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ℹ️ من نحن - متجر خير بلادك</title>
+    <title>من نحن - متجر خير بلادك</title>
     <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
@@ -18,14 +18,14 @@ session_start();
         </div>
         <nav>
             <ul>
-                <li><a href="index.php">🏠 الرئيسية</a></li>
-                <li><a href="products.php">🛍️ المنتجات</a></li>
-                <li><a href="product_show.php">📋 عرض المنتجات</a></li>
-                <li><a href="about.php" class="active">ℹ️ من نحن</a></li>
+                <li><a href="index.php">الرئيسية</a></li>
+                <li><a href="products.php">المنتجات</a></li>
+                <li><a href="product_show.php">عرض المنتجات</a></li>
+                <li><a href="about.php" class="active">من نحن</a></li>
                 <?php if (isset($_SESSION['user_id'])): ?>
-                    <li><a href="logout.php">👋 تسجيل خروج</a></li>
+                    <li><a href="logout.php">تسجيل خروج</a></li>
                 <?php else: ?>
-                    <li><a href="login.php">🔐 تسجيل الدخول</a></li>
+                    <li><a href="login.php">تسجيل الدخول</a></li>
                 <?php endif; ?>
             </ul>
         </nav>
@@ -33,7 +33,7 @@ session_start();
 
     <main>
         <div class="about-section">
-            <h2>🌟 مرحباً بكم في متجر خير بلادك</h2>
+            <h2>مرحباً بكم في متجر خير بلادك</h2>
             
             <div class="about-content">
                 <div class="mission-section">

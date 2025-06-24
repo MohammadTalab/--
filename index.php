@@ -89,11 +89,11 @@ $featuredProducts = array_slice($products, 0, 3);
         </div>
         <nav>
             <ul>
-                <li><a href="index.php" class="active">🏠 الرئيسية</a></li>
-                <li><a href="products.php">🛍️ المنتجات</a></li>
-                <li><a href="about.php">ℹ️ من نحن</a></li>
+                <li><a href="index.php" class="active">الرئيسية</a></li>
+                <li><a href="products.php">المنتجات</a></li>
+                <li><a href="about.php">من نحن</a></li>
                 <li>
-                    <a href="cart.php">🛒 السلة
+                    <a href="cart.php">السلة
                         <?php if (isset($_SESSION['user_id'])):
                             $cart_count = getCartCount($_SESSION['user_id']);
                             if ($cart_count > 0): ?>
@@ -103,11 +103,11 @@ $featuredProducts = array_slice($products, 0, 3);
                 </li>
                 <?php
                 if (isset($_SESSION['user_id'])): ?>
-                    <li><a href="orders.php">📦 طلباتي</a></li>
-                    <li><a href="logout.php">👋 تسجيل خروج (<?php echo htmlspecialchars($_SESSION['user_name']); ?>)</a></li>
+                    <li><a href="orders.php">طلباتي</a></li>
+                    <li><a href="logout.php">تسجيل خروج (<?php echo htmlspecialchars($_SESSION['user_name']); ?>)</a></li>
                 <?php else: ?>
-                    <li><a href="login.php">🔐 تسجيل الدخول</a></li>
-                    <li><a href="register.php">📝 تسجيل جديد</a></li>
+                    <li><a href="login.php">تسجيل الدخول</a></li>
+                    <li><a href="register.php">تسجيل جديد</a></li>
                 <?php endif; ?>
             </ul>
         </nav>
