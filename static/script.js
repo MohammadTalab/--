@@ -110,4 +110,77 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 100);
         }
     }
+
+    // تحسينات إضافية للتفاعلية
+
+    // تأثير سلس للتمرير
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // تأثير عند إضافة منتج للسلة
+    const addToCartButtons = document.querySelectorAll('button[name="add_to_cart"]');
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            // إضافة تأثير بصري
+            this.style.transform = 'scale(0.95)';
+            const originalText = this.innerHTML;
+            this.innerHTML = '🔄 جاري الإضافة...';
+
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+                this.innerHTML = originalText;
+            }, 1000);
+        });
+    });
+
+    // تأثير hover للبطاقات
+    const productCards = document.querySelectorAll('.product-card');
+    productCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // تحسين تجربة النماذج
+    const inputs = document.querySelectorAll('input, textarea, select');
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            if (this.parentElement) {
+                this.parentElement.style.transform = 'scale(1.02)';
+            }
+        });
+
+        input.addEventListener('blur', function() {
+            if (this.parentElement) {
+                this.parentElement.style.transform = 'scale(1)';
+            }
+        });
+    });
+
+    // تأثير للوجو
+    const logo = document.querySelector('.logo-img');
+    if (logo) {
+        logo.addEventListener('click', function() {
+            this.style.animation = 'spin 0.5s ease-in-out';
+            setTimeout(() => {
+                this.style.animation = '';
+            }, 500);
+        });
+    }
+
+    console.log('🌟 مرحباً بك في متجر خير بلادك! 🇵🇸');
 });
