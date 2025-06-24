@@ -26,7 +26,7 @@
         require_once("connect.php");
         $sql = "SELECT * FROM product";
         $res_product = mysqli_query($conn, $sql);
-        if {
+    {
             $i = 1;
             while($row = mysqli_fetch_assoc($res_product)) {
                 echo "<tr>";

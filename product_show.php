@@ -16,9 +16,7 @@ require_once('connect.php');
 
 $sql = "SELECT name, description, img, price FROM product";
 $res = mysqli_query($conn, $sql);
-
-
-if (mysqli_num_rows($res) > 0) {
+ {
     echo '<table>';
     echo '<caption>عرض المنتجات</caption>';
     echo '<tr><th>اسم المنتج</th><th>الوصف</th><th>الصورة</th><th>السعر</th></tr>';

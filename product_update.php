@@ -1,7 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     require_once('connect.php');
-    // var_dump($_FILES);
     $id = $_POST['id'];
     $name = $_POST['name'];
     $img = '';
