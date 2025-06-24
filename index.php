@@ -1,5 +1,5 @@
 <?php
-require_once 'db.php';
+require_once 'connect.php';
 session_start();
 
 function getAllProducts() {
@@ -107,6 +107,7 @@ $featuredProducts = array_slice($products, 0, 3);
                     <li><a href="logout.php">👋 تسجيل خروج (<?php echo htmlspecialchars($_SESSION['user_name']); ?>)</a></li>
                 <?php else: ?>
                     <li><a href="login.php">🔐 تسجيل الدخول</a></li>
+                    <li><a href="register.php">📝 تسجيل جديد</a></li>
                 <?php endif; ?>
             </ul>
         </nav>

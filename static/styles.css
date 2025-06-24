@@ -929,4 +929,75 @@ input:invalid {
     border: 1px solid rgba(52, 152, 219, 0.3);
 }
 
+/* About Page Styles */
+.about-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.about-content {
+    display: grid;
+    gap: 40px;
+}
+
+.mission-section,
+.vision-section,
+.values-section,
+.contact-section,
+.team-section {
+    background: var(--light-bg);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.mission-section h3,
+.vision-section h3,
+.values-section h3,
+.contact-section h3,
+.team-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 24px;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+}
+
+.values-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.values-section li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 16px;
+}
+
+.values-section li:last-child {
+    border-bottom: none;
+}
+
+.contact-info p {
+    margin: 15px 0;
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+.form-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-links a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-links a:hover {
+    text-decoration: underline;
+}
+
 
