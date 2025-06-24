@@ -68,7 +68,7 @@
 <?php
 // include_once('header.php');
 // include_once('menu.php');
-require_once('db.php');
+require_once('connect.php');
 
 
 $sql = "SELECT * FROM `category` ORDER BY `name`";
