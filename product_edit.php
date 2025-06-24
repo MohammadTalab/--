@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إضافة صنف</title>
+    <title>إضافة منتج</title>
     <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../style/style.css">
 </head>
@@ -24,7 +24,7 @@ if($row_cat = mysqli_fetch_assoc($res_cat)) {
     <form action="product_update.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
         <table class="form">
-            <caption>تعديل صنف</caption>
+            <caption>تعديل منتج</caption>
             <tr>
                 <td><label for="name">الاسم:</label></td>
                 <td><input type="text" name="name" id="name" value="<?php echo $name;?>"></td>
