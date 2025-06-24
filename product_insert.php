@@ -1,21 +1,24 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     require_once('connect.php');
-    var_dump($_FILES); 
+    var_dump($_FILES);
     $name = $_POST['name'];
-    $description = $_POST['description'];
     $img = '';
+    $description = $_POST['description'];
     $price = $_POST['price'];
 
-    if ($_FILES['img']['error'] == 0) {
+
+    if($_FILES['img']['error'] == 0){
         $img = $_FILES['img']['name'];
-        move_uploaded_file($_FILES['img']['tmp_name'], 'images/' . $img);
+        move_uploaded_file($_FILES['img']['tmp_name'], 'images/'.$img);
     }
-    $sql = "INSERT INTO `product` (`name`, `description`, `img`, `price`) VALUES ('$name', '$description', '$img', '$price')";  
-    if (mysqli_query($conn, $sql)) {
-        echo 'success';
-    } else {
-        echo 'error: ' ;
+    $sql = "INSERT INTO `product` (`name`,`img`,`description`,`price`) VALUES('$name','$img', '$description','$price')";
+    if(mysqli_query($conn, $sql))
+    {
+        echo 'succed';
     }
+  else{
+    echo 'error';
+  }
 }
-?>
+// header ('Location: category_show.php')

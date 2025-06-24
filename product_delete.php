@@ -1,56 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
-    <title>Delete Product</title>
-    <link rel="stylesheet" href="style/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة صنف</title>
+    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
-
 <?php
-//include_once("include/header.php");
-//include_once("include/conn.php");
-//require_once("include/connect.php");
+require_once('connect.php');
+$sql = "SELECT * FROM `product` WHERE p_id = " . $_GET['id'];
+$res_cat = mysqli_query($conn, $sql);
+if($row_cat = mysqli_fetch_assoc($res_cat)) {
+    $name = $row_cat['name'];
+    $description = $row_cat['description'];
+    $img = $row_cat['img'];
+    $price = $row_cat['price'];
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    if ($id != "") {
-        $sql = "SELECT * FROM product WHERE p_id = '$id'";
-        $res = mysqli_query($conn, $sql);
-        if (mysqli_num_rows($res) > 0) {
-            $row = mysqli_fetch_assoc($res);
+// include('include/header.php');
+// include('include/menu.php');
 ?>
-
-<form action="product_remove.php" method="post">
-    <input type="hidden" name="id" value="<?php echo $id; ?>">
-    <table class="form">
-        <caption>Are you sure you want to delete this product?</caption>
-        <tr>
-            <td>Product Name:</td>
-            <td><?php echo $row['name']; ?></td>
-        </tr>
-        <tr>
-            <td><input type="submit" class="yes" name="yes" value="Yes"></td>
-            <td><input type="submit" class="no" name="no" value="No"></td>
-        </tr>
-    </table>
-</form>
-
+    <form action="product_remove.php" method="post">
+        <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
+        <table class="form">
+            <caption>حذف صنف</caption>
+            <tr>
+                <td>هل تريد بالتأكيد حذف <?php echo $name;?></td>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="yes" value="نعم">
+                    <input type="submit" name="no" value="لا">
+                </td>
+            </tr>
+        </table>
+    </form>
 <?php
-        } else {
-            header("Location: product_show.php");
-            exit();
-        }
-    } else {
-        header("Location: product_show.php");
-        exit();
-    }
-} else {
-    header("Location: product_show.php");
-    exit();
 }
+// include('include/footer.php');
 ?>
-
-<?php //include_once("include/footer.php"); ?>
-
 </body>
 </html>

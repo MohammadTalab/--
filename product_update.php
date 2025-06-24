@@ -7,8 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $img = '';
     $description = $_POST['description'];
     $price = $_POST['price'];
-
-
+    
     if($_FILES['img']['error'] == 0){
         $img = $_FILES['img']['name'];
         move_uploaded_file($_FILES['img']['tmp_name'], 'images/'.$img);

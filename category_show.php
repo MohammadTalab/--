@@ -14,27 +14,26 @@
 require_once('connect.php');
 
 
-$sql = "SELECT name, description, img, price FROM product";
+$sql = "SELECT name, description, img, FROM category";
 $res = mysqli_query($conn, $sql);
 
 
 if (mysqli_num_rows($res) > 0) {
     echo '<table>';
-    echo '<caption>عرض المنتجات</caption>';
-    echo '<tr><th>اسم المنتج</th><th>الوصف</th><th>الصورة</th><th>السعر</th></tr>';
+    echo '<caption>عرض الاصناف</caption>';
+    echo '<tr><th>اسم الصنف</th><th>الوصف</th><th>الصورة</th><th>السعر</th></tr>';
 
     while ($row = mysqli_fetch_assoc($res)) {
         echo '<tr>';
         echo '<td>' . htmlspecialchars($row['name']) . '</td>';
         echo '<td>' . nl2br(htmlspecialchars($row['description'])) . '</td>';
-        echo '<td><img src="images/' . htmlspecialchars($row['img']) . '" alt="صورة المنتج"></td>';
-        echo '<td>' . number_format($row['price'], 2) . ' $</td>';
+        echo '<td><img src="images/' . htmlspecialchars($row['img']) . '" alt="صورة الصنف"></td>';
         echo '</tr>';
     }
 
     echo '</table>';
 } else {
-    echo '<p style="text-align:center; margin-top:20px;">لا توجد منتجات لعرضها حالياً.</p>';
+    echo '<p style="text-align:center; margin-top:20px;">لا توجد اصناف لعرضها حالياً.</p>';
 }
 ?>
 </body>

@@ -20,7 +20,7 @@ if($row_cat = mysqli_fetch_assoc($res_cat)) {
 // include('include/header.php');
 // include('include/menu.php');
 ?>
-    <form action="category_remove.php" method="post"">
+    <form action="category_remove.php" method="post">
         <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
         <table class="form">
             <caption>حذف صنف</caption>
