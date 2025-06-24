@@ -7,9 +7,9 @@
 <body>
 
 <?php
-include_once("include/header.php");
-include_once("include/conn.php");
-require_once("include/connect.php");
+//include_once("include/header.php");
+//include_once("include/conn.php");
+require_once("connect.php");
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
