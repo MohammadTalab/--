@@ -9,8 +9,8 @@
 </head>
 <body>
     <?php
-    include_once("include/header.php");
-    include_once("include/menu.php");
+   // include_once("include/header.php");
+  //  include_once("include/menu.php");
     ?>
 
     <div><a href="category_add.php" class="btn">Add New Category</a></div>
@@ -20,11 +20,10 @@
             <th>name</th>
             <th>img</th>
             <th>description</th>
-            <th>price</th>
         </tr>
 
         <?php
-        require_once("include/connect.php");
+        require_once("connect.php");
         $sql = "SELECT * FROM category";
         $res_category = mysqli_query($conn, $sql);
         if (mysqli_num_rows($res_category) > 0) {
@@ -33,9 +32,12 @@
                 echo "<tr>";
                 echo "<td>" . $i . "</td>";
                 echo "<td>" . $row['name'] . "</td>";
-                echo "<td><img src='../images/" . $row['img'] . "' width='50'></td>";
+                echo "<td><img src='images/" . $row['img'] . "' width='50'></td>";
                 echo "<td>" . $row['description'] . "</td>";
-                echo "<td>" . $row['price'] . "</td>";
+                echo '<td>';
+                echo '<a href="category_edit.php?id='.$row['c_id'].'">Edit</a> ';
+                echo '<a href="category_delete.php?id='.$row['c_id'].'">Delete</a> ';
+                echo '</td>';
                 echo "</tr>";
                 $i++;
             }
@@ -45,6 +47,6 @@
         ?>
     </table>
 
-    <?php include_once("include/footer.php"); ?>
+  <?php// include_once("include/footer.php"); ?>
 </body>
 </html>
