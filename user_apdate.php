@@ -6,9 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $email = $_POST['email'];
     $password = $_POST['password'];
     
-    else{
-        $sql = "UPDATE `user` SET `name`='$name', `email` =$email , `password` =$password WHERE `u_id` = $id";
-    }
+    $sql = "UPDATE `user` SET `name`='$name', `email` =$email , `password` =$password WHERE `u_id` = $id";
     if(mysqli_query($conn, $sql))
     {
         echo 'succed';

@@ -16,7 +16,7 @@ require_once('connect.php');
 
 $sql = "SELECT name, description, img, price FROM product";
 $res = mysqli_query($conn, $sql);
- {
+ 
     echo '<table>';
     echo '<caption>عرض المنتجات</caption>';
     echo '<tr><th>اسم المنتج</th><th>الوصف</th><th>الصورة</th><th>السعر</th></tr>';
@@ -31,9 +31,7 @@ $res = mysqli_query($conn, $sql);
     }
 
     echo '</table>';
-} else {
-    echo '<p style="text-align:center; margin-top:20px;">لا توجد منتجات لعرضها حالياً.</p>';
-}
+
 ?>
 </body>
 </html>
