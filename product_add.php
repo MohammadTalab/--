@@ -29,7 +29,7 @@
             </tr>
             <tr>
                 <td><label for="price">السعر:</label></td>
-                <td><input type="number" name="price" id="price"></td>
+                <td><input type="number" step="0.1" name="price" id="price"></td>
             <tr>
                 <td colspan="2"><input type="submit" name="submit" value="إضافة"></td>
             </tr>

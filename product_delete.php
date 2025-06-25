@@ -12,7 +12,7 @@
 require_once('connect.php');
 $sql = "SELECT * FROM `product` WHERE p_id = " . $_GET['id'];
 $res_cat = mysqli_query($conn, $sql);
-($row_cat = mysqli_fetch_assoc($res_cat)) {
+if($row_cat = mysqli_fetch_assoc($res_cat)) {
     $name = $row_cat['name'];
     $description = $row_cat['description'];
     $img = $row_cat['img'];

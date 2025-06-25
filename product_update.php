@@ -12,10 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         move_uploaded_file($_FILES['img']['tmp_name'], 'images/'.$img);
     }
     if($img == ''){
-        $sql = "UPDATE `product` SET `name`='$name',`description` = '$description' WHERE `p_id` = $id" . " AND `price` = '$price'";
+        $sql = "UPDATE `product` SET `name`='$name', `price` = '$price',`description` = '$description' WHERE `p_id` = $id" ;
     }
     else{
-        $sql = "UPDATE `product` SET `name`='$name',`img` = '$img',`description` = '$description' WHERE `p_id` = $id" . " AND `price` = '$price'";
+        $sql = "UPDATE `product` SET `name`='$name', `price` = '$price',`img` = '$img',`description` = '$description' WHERE `p_id` = $id";
     }
     if(mysqli_query($conn, $sql))
     {

@@ -16,7 +16,7 @@ if($row_cat = mysqli_fetch_assoc($res_cat)) {
     $name = $row_cat['name'];
     $description = $row_cat['description'];
     $img = $row_cat['img'];
-/   $price = $row_cat['price'];
+   $price = $row_cat['price'];
 
 // include('include/header.php');
 // include('include/menu.php');
@@ -44,7 +44,7 @@ if($row_cat = mysqli_fetch_assoc($res_cat)) {
             </tr>
             <tr>
                 <td><label for="price">السعر:</label></td>
-                <td><input type="number" name="price" id="price" value="<?php echo $row_cat['price'];?>"></td>
+                <td><input type="number" step="0.1" name="price" id="price" value="<?php echo $row_cat['price'];?>"></td>
             <tr>
                 <td colspan="2"><input type="submit" name="submit" value="تعديل"></td>
             </tr>
