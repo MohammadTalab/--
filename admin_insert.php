@@ -2,9 +2,9 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     require_once('connect.php');
     $name = $_POST['name'];
-    $username = $row_cat['username'];
-    $password = $row_cat['password'];
-    $sql = "INSERT INTO `user` (`name`,`username`,`password`,) VALUES('$name', '$username', '$password')";
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $sql = "INSERT INTO `admin` (`name`,`username`,`password`) VALUES('$name', '$username', '$password')";
     if(mysqli_query($conn, $sql))
     {
         echo 'succed';
