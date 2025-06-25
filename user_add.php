@@ -3,14 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إضافة منتج</title>
+    <title>إضافة مستخدم</title>
     <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
-<?php
-// include('include/header.php');
-// include('include/menu.php');
-?>
     <form action="user_insert.php" method="post" enctype="multipart/form-data">
         <table class="form">
             <caption>إضافة مستخدم</caption>

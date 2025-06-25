@@ -17,9 +17,7 @@ if($row_cat = mysqli_fetch_assoc($res_cat)) {
     $password = $row_cat['password'];
 } else {
     echo "<p>المستخدم غير موجود.</p>";
-
-
-
+}
 ?>
     <form action="user _update.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
