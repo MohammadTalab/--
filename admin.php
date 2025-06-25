@@ -12,7 +12,7 @@
         <tr>
             <th>u_id</th>
             <th>name</th>
-            <th>user name</th>
+            <th>username</th>
             <th>password</th>
         </tr>
 
@@ -21,10 +21,10 @@
         $sql = "SELECT * FROM admin";
         $res_user = mysqli_query($conn, $sql);
             $i = 1;
-            while($row = mysqli_fetch_assoc($res_admin)) {
+            while($row = mysqli_fetch_assoc($res_user)) {
                 echo "<tr>";
                 echo "<td>" . $row['name'] . "</td>";
-                echo "<td>" . $row['user name'] . "</td>";
+                echo "<td>" . $row['username'] . "</td>";
                 echo "<td>" . $row['password'] . "</td>";
                 echo '<td>';
                 echo '<a href="admin_edit.php?id='.$row['a_id'].'">Edit</a> ';

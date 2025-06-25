@@ -9,18 +9,18 @@
 <body>
 <?php
 require_once('connect.php');
-$sql = "SELECT * FROM `admin` WHERE a_id = " . $_GET['id'];
+$id = intval($_GET['id']);
+$sql = "SELECT * FROM `admin` WHERE a_id = $id";
 $res_cat = mysqli_query($conn, $sql);
 if($row_cat = mysqli_fetch_assoc($res_cat)) {
     $name = $row_cat['name'];
-    $username = $row_cat['user name'];
+    $username = $row_cat['username'];
     $password = $row_cat['password'];
 } else 
     echo "<p>المدير غير موجود.</p>";
-
 ?>
     <form action="admin _update.php" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
+        <input type="hidden" name="id" value="<?php echo $id;?>">
         <table class="form">
     <caption>تعديل المدير </caption>
                 <tr>
@@ -29,14 +29,15 @@ if($row_cat = mysqli_fetch_assoc($res_cat)) {
             </tr>
             <tr>
                 <td><label for="username"></label></td>
-                <td><input type="text" name="username" id="username" value="<?php echo $row_cat['user name'];?>"></td>
+                <td><input type="text" name="username" id="username" value="<?php echo $username;?>"></td>
             </tr>
             <tr>
                 <td><label for="password">كلمة المرور:</label></td>
-                <td><input type="password" name="password" id="password" value="<?php echo $row_cat['password'];?>"></td>
+                <td><input type="password" name="password" id="password" value="<?php echo $password;?>"></td>
             </tr>
                 <td colspan="2"><input type="submit" name="submit" value="تعديل"></td>
             </tr>
         </table>
     </form>
 </body>
+</html>

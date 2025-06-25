@@ -9,7 +9,8 @@
 <body>
 <?php
 require_once('connect.php');
-$sql = "SELECT * FROM `admin` WHERE a_id = " . $_GET['id'];
+$id = mysqli_real_escape_string($conn, $_GET['id']);
+$sql = "SELECT * FROM `admin` WHERE a_id = $id";
 $res_cat = mysqli_query($conn, $sql);
 if($row_cat = mysqli_fetch_assoc($res_cat)) {
     $name = $row_cat['name'];
@@ -23,6 +24,7 @@ if($row_cat = mysqli_fetch_assoc($res_cat)) {
             <tr>
                 <td>هل تريد بالتأكيد حذف <?php echo $name;?></td>
             <tr>
+            <tr>  
                 <td colspan="2">
                     <input type="submit" name="yes" value="نعم">
                     <input type="submit" name="no" value="لا">

@@ -10,7 +10,7 @@
 <body>
 <?php
 require_once('connect.php');
-$sql = "SELECT * FROM `product` WHERE p_id = " . $_GET['id'];
+$sql = "SELECT * FROM `product` WHERE p_id = " . $_GET['p_id'];
 $res_cat = mysqli_query($conn, $sql);
 if($row_cat = mysqli_fetch_assoc($res_cat)) {
     $name = $row_cat['name'];
