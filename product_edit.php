@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: admin_login.php");
+    exit();
+}
+
+if ($_SESSION['role'] !== 'admin') {
+    echo "لا تملك صلاحية الوصول لهذه الصفحة.";
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="ar">
 <head>
@@ -16,7 +29,7 @@ if($row_cat = mysqli_fetch_assoc($res_cat)) {
     $name = $row_cat['name'];
     $description = $row_cat['description'];
     $img = $row_cat['img'];
-   $price = $row_cat['price'];
+    $price = $row_cat['price'];
 
 // include('include/header.php');
 // include('include/menu.php');
@@ -32,8 +45,8 @@ if($row_cat = mysqli_fetch_assoc($res_cat)) {
             <tr>
                 <td colspan="2">
                     <img src='images/<?php echo $img;?>' width='100px' alt='صورة الصنف'>
-</td>
-</tr>
+                </td>
+            </tr>
             <tr>
                 <td><label for="img">الصور:</label></td>
                 <td><input type="file" name="img" id="img"></td>
@@ -44,7 +57,8 @@ if($row_cat = mysqli_fetch_assoc($res_cat)) {
             </tr>
             <tr>
                 <td><label for="price">السعر:</label></td>
-                <td><input type="number" step="0.1" name="price" id="price" value="<?php echo $row_cat['price'];?>"></td>
+                <td><input type="number" step="0.1" name="price" id="price" value="<?php echo $price;?>"></td>
+            </tr>
             <tr>
                 <td colspan="2"><input type="submit" name="submit" value="تعديل"></td>
             </tr>

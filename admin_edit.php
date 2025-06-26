@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: admin_login.php");
+    exit();
+}
+
+if ($_SESSION['role'] !== 'admin') {
+    echo "لا تملك صلاحية الوصول لهذه الصفحة.";
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="ar">
 <head>
@@ -9,8 +22,8 @@
 <body>
 <?php
 require_once('connect.php');
-$id = intval($_GET['id']);
-$sql = "SELECT * FROM `admin` WHERE a_id = $id";
+$id = $_GET['id'];
+$sql = "SELECT * FROM admin WHERE a_id = $id";
 $res_cat = mysqli_query($conn, $sql);
 if($row_cat = mysqli_fetch_assoc($res_cat)) {
     $name = $row_cat['name'];

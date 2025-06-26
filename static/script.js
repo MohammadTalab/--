@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // تأثير عند إضافة منتج للسلة
     const addToCartButtons = document.querySelectorAll('button[name="add_to_cart"]');
     addToCartButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function() {
             // إضافة تأثير بصري
             this.style.transform = 'scale(0.95)';
             const originalText = this.innerHTML;
@@ -182,5 +182,101 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    console.log('🌟 مرحباً بك في متجر خير بلادك! 🇵🇸');
+    // Scroll to top button
+    const scrollTopBtn = document.createElement('button');
+    scrollTopBtn.className = 'scroll-top';
+    scrollTopBtn.innerHTML = '↑';
+    scrollTopBtn.title = 'العودة للأعلى';
+    document.body.appendChild(scrollTopBtn);
+
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            scrollTopBtn.classList.add('show');
+        } else {
+            scrollTopBtn.classList.remove('show');
+        }
+    });
+
+    scrollTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Search functionality
+    function initSearch() {
+        const searchInput = document.querySelector('.search-input');
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const products = document.querySelectorAll('.product-card');
+
+                products.forEach(product => {
+                    const productName = product.querySelector('h3')?.textContent.toLowerCase() || '';
+                    const productDesc = product.querySelector('p')?.textContent.toLowerCase() || '';
+
+                    if (productName.includes(searchTerm) || productDesc.includes(searchTerm)) {
+                        product.style.display = 'block';
+                        product.style.animation = 'fadeIn 0.3s ease';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            });
+        }
+    }
+
+    // Initialize search if on products page
+    if (window.location.pathname.includes('products') || window.location.pathname.includes('product_show')) {
+        initSearch();
+    }
+
+    // Loading states for forms
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        form.addEventListener('submit', function() {
+            const submitBtn = this.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                const originalText = submitBtn.textContent;
+                submitBtn.innerHTML = '<span class="loading"></span> جاري التحميل...';
+                submitBtn.disabled = true;
+
+                // Re-enable after 3 seconds (fallback)
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, 3000);
+            }
+        });
+    });
+
+    // Image lazy loading
+    const images = document.querySelectorAll('img[data-src]');
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+
+    images.forEach(img => imageObserver.observe(img));
+
+    // Add fade-in animation to elements
+    const animateElements = document.querySelectorAll('.product-card, .form-container, .about-section');
+    const elementObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+            }
+        });
+    });
+
+    animateElements.forEach(el => elementObserver.observe(el));
+
+    console.log('مرحباً بك في متجر خير بلادك!');
 });
