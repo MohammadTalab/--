@@ -1,8 +1,8 @@
+/* متغيرات CSS العامة للألوان والقيم */
 :root {
     --primary-color: #2c3e50;
     --secondary-color: #3498db;
     --accent-color: #e74c3c;
-<<<<<<< HEAD
     --success-color: #27ae60;
     --warning-color: #f39c12;
     --text-color: #2c3e50;
@@ -13,23 +13,16 @@
     --border-radius: 12px;
     --box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-=======
-    --text-color: #333;
-    --light-text: #666;
-    --bg-color: #f8f9fa;
-    --light-bg:#ffffff ;
-    --border-radius: 8px;
-    --box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    --transition: all 0.3s ease;
->>>>>>> 49bb4c9606c6495a5e460945e62844d64156a0aa
 }
 
+/* إعادة تعيين الهوامش والحشو لجميع العناصر */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* تنسيق الجسم الرئيسي للصفحة */
 body {
     font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -39,7 +32,7 @@ body {
 }
 
 
-/* Header Styles */
+/* تنسيق رأس الصفحة (Header) */
 header {
     display: flex;
     justify-content: space-between;
@@ -54,12 +47,14 @@ header {
     border-bottom: 1px solid rgba(255,255,255,0.2);
 }
 
+/* حاوي الشعار */
 .logo-container {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
+/* صورة الشعار */
 .logo-img {
     width: 45px;
     height: 45px;
@@ -69,11 +64,13 @@ header {
     transition: var(--transition);
 }
 
+/* تأثير عند تمرير الماوس على الشعار */
 .logo-img:hover {
     transform: rotate(360deg) scale(1.1);
     border-color: var(--accent-color);
 }
 
+/* نص الشعار */
 .logo-text {
     font-size: 24px;
     font-weight: 700;
@@ -83,12 +80,14 @@ header {
     letter-spacing: 1px;
 }
 
+/* تأثير عند تمرير الماوس على نص الشعار */
 .logo-text:hover {
     color: var(--secondary-color);
     transform: translateY(-2px);
 }
 
-/* Navigation Styles */
+/* تنسيق شريط التنقل */
+/* قائمة التنقل */
 nav ul {
     display: flex;
     list-style: none;
@@ -96,6 +95,7 @@ nav ul {
     align-items: center;
 }
 
+/* روابط التنقل */
 nav ul li a {
     text-decoration: none;
     color: var(--text-color);
@@ -109,6 +109,7 @@ nav ul li a {
     border: 1px solid transparent;
 }
 
+/* تأثير الإضاءة على روابط التنقل */
 nav ul li a::before {
     content: '';
     position: absolute;
@@ -133,14 +134,14 @@ nav ul li a:hover, nav ul li a.active {
 }
 
 
-/* Main Content */
+/* المحتوى الرئيسي */
 main {
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
 }
 
-/* Hero Section */
+/* قسم البطل الرئيسي */
 .hero {
     text-align: center;
     padding: 80px 40px;
@@ -201,7 +202,7 @@ main {
 }
 
 
-/* Button Styles */
+/* تنسيق الأزرار */
 .btn {
     display: inline-block;
     padding: 14px 30px;
@@ -248,7 +249,7 @@ main {
 }
 
 
-/* Products Section */
+/* قسم المنتجات */
 .featured-products h2, .products-section h2 {
     text-align: center;
     margin-bottom: 50px;
@@ -339,7 +340,7 @@ main {
 }
 
 
-/* Footer */
+/* تذييل الصفحة */
 footer {
     text-align: center;
     padding: 40px 20px;
@@ -417,7 +418,7 @@ footer p {
 }
 
 
-/* Form Styles */
+/* تنسيق النماذج */
 .form-container {
     max-width: 480px;
     margin: 60px auto;
@@ -493,7 +494,7 @@ input:invalid {
     border-color: var(--accent-color);
 }
 
-/* Table Styles */
+/* تنسيق الجداول */
 .table-container {
     background: var(--light-bg);
     border-radius: var(--border-radius);
@@ -939,7 +940,7 @@ input:invalid {
     border: 1px solid rgba(52, 152, 219, 0.3);
 }
 
-/* About Page Styles */
+/* تنسيق صفحة من نحن */
 .about-section {
     max-width: 1000px;
     margin: 0 auto;
@@ -1008,6 +1009,275 @@ input:invalid {
 
 .form-links a:hover {
     text-decoration: underline;
+}
+
+/* أنيميشن التحميل */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* زر العودة للأعلى */
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index: 1000;
+    font-size: 18px;
+}
+
+.scroll-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-top:hover {
+    background: var(--secondary-color);
+    transform: translateY(-3px);
+}
+
+/* Tooltip */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: var(--primary-color);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Search Bar Enhancement */
+.search-container {
+    position: relative;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 45px 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+.search-input:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.search-btn {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--secondary-color);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 8px 12px;
+    color: white;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.search-btn:hover {
+    background: var(--primary-color);
+}
+
+/* Badge Styles */
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 12px;
+    color: white;
+}
+
+.badge.new {
+    background: var(--success-color);
+}
+
+.badge.sale {
+    background: var(--accent-color);
+}
+
+.badge.featured {
+    background: var(--warning-color);
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    padding: 15px 0;
+    margin-bottom: 20px;
+    background: transparent;
+}
+
+.breadcrumb ol {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.breadcrumb li {
+    color: var(--light-text);
+}
+
+.breadcrumb li:not(:last-child)::after {
+    content: "←";
+    margin-right: 10px;
+    color: var(--border-color);
+}
+
+.breadcrumb a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* تحسين التجاوب مع الهواتف المحمولة */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    header {
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .logo-container {
+        order: 1;
+    }
+
+    nav {
+        order: 2;
+        width: 100%;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    nav a {
+        padding: 12px;
+        text-align: center;
+        border-radius: var(--border-radius);
+        background: var(--bg-color);
+    }
+
+    .hero-section h1 {
+        font-size: 24px;
+    }
+
+    .hero-section p {
+        font-size: 16px;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .form-container {
+        padding: 20px;
+        margin: 10px;
+    }
 }
 
 
