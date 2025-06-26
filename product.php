@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+if ($_SESSION['role'] !== 'admin') {
+    echo "لا تملك صلاحية الوصول لهذه الصفحة.";
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -9,8 +20,6 @@
 </head>
 <body>
     <?php
-   // include_once("include/header.php");
-  //  include_once("include/menu.php");
     ?>
 
     <div><a href="product_add.php" class="btn">Add New product</a></div>
