@@ -21,17 +21,27 @@ else{
     header('Location: admin_logout.php');
 }
 
-$sql = "SELECT  name , username, password FROM admin";
+$sql = "SELECT  * FROM admin";
 $res = mysqli_query($conn, $sql);
      echo '<table>';
     echo '<caption>عرض المديرين</caption>';
-    echo '<tr><th>اسم المدير</th><th>المدير </th><th>كلمة المرور</th></tr>';
+    echo '<tr>
+        <th>اسم المدير</th>
+        <th> اسم المستخدم</th>
+        <th>كلمة المرور</th>
+        <th>خيارات</th>
+        </tr>';
   
     while ($row = mysqli_fetch_assoc($res)) {
         echo '<tr>';
         echo '<td>' . $row['name'] . '</td>';
         echo '<td>' . $row['username'] . '</td>';
         echo '<td>' . $row['password'] . '</td>';
+        echo '<td>';
+        echo '<a href="admin_edit.php?id='.$row['a_id'].'">تعديل</a>';
+        echo ' ';
+        echo '<a href="admin_delete.php?id='.$row['a_id'].'">حذف</a>';
+        echo '</td>';
         echo '</tr>';
     }
 

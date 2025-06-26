@@ -13,17 +13,18 @@ if ($_SESSION['role'] !== 'admin') {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     require_once('connect.php');
-    // var_dump($_FILES);
     $id = $_POST['id'];
-    if(isset($_POST['yes'])){
-        $sql = "DELETE FROM `category` WHERE `c_id` = $id";
-        if(mysqli_query($conn, $sql))
-        {
-            echo 'succed';
-        }
+    $name = $_POST['name'];
+    $username = $_POST['user name'];
+    $password = $_POST['password'];
+    
+    $sql = "UPDATE admin SET name='$name', $username =$email , password =$password WHERE u_id = $id";
+    if(mysqli_query($conn, $sql))
+    {
+        echo 'succed';
     }
-    else{
-        echo 'error';
-    }
+  else{
+    echo 'error';
+  }
 }
-header ('Location: category.php');
+header ('Location: admin.php');

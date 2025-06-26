@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: admin_login.php");
+    exit();
+}
+
+if ($_SESSION['role'] !== 'admin') {
+    echo "لا تملك صلاحية الوصول لهذه الصفحة.";
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="ar">
 <head>
@@ -11,7 +24,7 @@
 <?php
 require_once('connect.php');
 $id = mysqli_real_escape_string($conn, $_GET['id']);
-$sql = "SELECT * FROM `category` WHERE c_id = '" . $_GET['id']+"'";;
+$sql = "SELECT * FROM category WHERE c_id = '" . $_GET['id'] . "'";;
 $res_cat = mysqli_query($conn, $sql);
 if($row_cat = mysqli_fetch_assoc($res_cat)) {
     $name = $row_cat['name'];
@@ -32,8 +45,8 @@ if($row_cat = mysqli_fetch_assoc($res_cat)) {
             <tr>
                 <td colspan="2">
                     <img src='images/<?php echo $img;?>' width='100px' alt='صورة الصنف'>
-</td>
-</tr>
+                </td>
+            </tr>
             <tr>
                 <td><label for="img">الصور:</label></td>
                 <td><input type="file" name="img" id="img"></td>

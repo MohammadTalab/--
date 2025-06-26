@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: admin_login.php");
+    exit();
+}
+
+if ($_SESSION['role'] !== 'admin') {
+    echo "لا تملك صلاحية الوصول لهذه الصفحة.";
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -13,7 +26,7 @@ require_once('connect.php');
 
 $sql = "SELECT  u_id ,name , email, password FROM user";
 $res = mysqli_query($conn, $sql);
- {
+ 
     echo '<table>';
     echo '<caption>عرض المستخدمين</caption>';
     echo '<tr><th>اسم المستخدم</th><th>البريد الإلكتروني</th><th>كلمة المرور</th></tr>';
@@ -27,9 +40,7 @@ $res = mysqli_query($conn, $sql);
     }
 
     echo '</table>';
-} else {
-    echo '<p style="text-align:center; margin-top:20px;">لا يوجد مستخدمين لعرضهم حالياً.</p>';
-}
+
 ?>
 </body>
 </html>

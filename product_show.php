@@ -31,10 +31,9 @@ require_once('connect.php');
 
 $sql = "SELECT name, description, img, price FROM product";
 $res = mysqli_query($conn, $sql);
-<<<<<<< HEAD
 
 
-if (mysqli_num_rows($res) > 0) {
+
     echo '<div class="products-section">';
     echo '<h2>📋 جميع المنتجات المتوفرة</h2>';
     echo '<div class="table-container">';
@@ -43,12 +42,6 @@ if (mysqli_num_rows($res) > 0) {
     echo '<tr><th>🏷️ اسم المنتج</th><th>📝 الوصف</th><th>🖼️ الصورة</th><th>💰 السعر</th></tr>';
     echo '</thead>';
     echo '<tbody>';
-=======
- 
-    echo '<table>';
-    echo '<caption>عرض المنتجات</caption>';
-    echo '<tr><th>اسم المنتج</th><th>الوصف</th><th>الصورة</th><th>السعر</th></tr>';
->>>>>>> 6d54b27cbffcce1317e2f3c034f9993c6164224c
 
     while ($row = mysqli_fetch_assoc($res)) {
         echo '<tr>';
@@ -61,18 +54,6 @@ if (mysqli_num_rows($res) > 0) {
 
     echo '</tbody>';
     echo '</table>';
-<<<<<<< HEAD
-    echo '</div>';
-    echo '</div>';
-} else {
-    echo '<div class="empty-state">';
-    echo '<h2>📦 لا توجد منتجات</h2>';
-    echo '<p>لا توجد منتجات لعرضها حالياً. يرجى المحاولة لاحقاً.</p>';
-    echo '</div>';
-}
-=======
-
->>>>>>> 6d54b27cbffcce1317e2f3c034f9993c6164224c
 ?>
     </main>
 
