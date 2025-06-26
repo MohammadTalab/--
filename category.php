@@ -26,7 +26,6 @@
         require_once("connect.php");
         $sql = "SELECT * FROM category";
         $res_category = mysqli_query($conn, $sql);
-        if {
             $i = 1;
             while($row = mysqli_fetch_assoc($res_category)) {
                 echo "<tr>";
@@ -41,9 +40,7 @@
                 echo "</tr>";
                 $i++;
             }
-        } else {
-            echo "<tr><td colspan='5'>No results found</td></tr>";
-        }
+
         ?>
     </table>
 

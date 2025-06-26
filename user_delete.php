@@ -4,27 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إضافة منتج</title>
-    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
 <?php
 require_once('connect.php');
-$sql = "SELECT * FROM `product` WHERE p_id = " . $_GET['p_id'];
+$sql = "SELECT * FROM `user` WHERE u_id = " . $_GET['id'];
 $res_cat = mysqli_query($conn, $sql);
 if($row_cat = mysqli_fetch_assoc($res_cat)) {
     $name = $row_cat['name'];
-    $description = $row_cat['description'];
-    $img = $row_cat['img'];
-    $price = $row_cat['price'];
-
-// include('include/header.php');
-// include('include/menu.php');
+    $email = $row_cat['email'];
+    $password = $row_cat['password'];}
 ?>
-    <form action="product_remove.php" method="post">
+    <form action="user_remove.php" method="post">
         <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
         <table class="form">
-            <caption>حذف منتج</caption>
+            <caption>حذف مستخدم</caption>
             <tr>
                 <td>هل تريد بالتأكيد حذف <?php echo $name;?></td>
             <tr>
@@ -35,9 +30,5 @@ if($row_cat = mysqli_fetch_assoc($res_cat)) {
             </tr>
         </table>
     </form>
-<?php
-}
-// include('include/footer.php');
-?>
 </body>
 </html>

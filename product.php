@@ -26,7 +26,6 @@
         require_once("connect.php");
         $sql = "SELECT * FROM product";
         $res_product = mysqli_query($conn, $sql);
-    {
             $i = 1;
             while($row = mysqli_fetch_assoc($res_product)) {
                 echo "<tr>";
@@ -36,15 +35,12 @@
                 echo "<td>" . $row['description'] . "</td>";
                 echo "<td>" . $row['price'] . "</td>";
                 echo '<td>';
-                echo '<a href="category_edit.php?id='.$row['p_id'].'">Edit</a> ';
-                echo '<a href="category_delete.php?id='.$row['p_id'].'">Delete</a> ';
+                echo '<a href="product_edit.php?id='.$row['p_id'].'">Edit</a> ';
+                echo '<a href="product_delete.php?id='.$row['p_id'].'">Delete</a> ';
                 echo '</td>';
                 echo "</tr>";
                 $i++;
             }
-        } else {
-            echo "<tr><td colspan='5'>No results found</td></tr>";
-        }
         ?>
     </table>
 
