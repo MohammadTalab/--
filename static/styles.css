@@ -768,26 +768,60 @@ input:invalid {
     }
 }
 
+/* تحسين التجاوب مع الهواتف المحمولة */
 @media (max-width: 480px) {
-    .hero h1 {
-        font-size: 24px;
+    .container {
+        padding: 10px;
     }
 
-    .hero p {
-        font-size: 16px;
+    header {
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 15px;
     }
 
-    .products-grid {
-        grid-template-columns: 1fr;
+    .logo-container {
+        order: 1;
     }
 
     .logo-text {
         font-size: 16px;
     }
 
+    nav {
+        order: 2;
+        width: 100%;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 5px;
+    }
+
     nav ul li a {
-        padding: 6px 10px;
+        padding: 12px;
+        text-align: center;
+        border-radius: var(--border-radius);
+        background: var(--bg-color);
         font-size: 12px;
+    }
+
+    .hero h1, .hero-section h1 {
+        font-size: 24px;
+    }
+
+    .hero p, .hero-section p {
+        font-size: 16px;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .form-container {
+        padding: 20px;
+        margin: 10px;
     }
 }
 
@@ -898,7 +932,7 @@ input:invalid {
     border-radius: 2px;
 }
 
-/* Loading Animation */
+/* أنيميشن التحميل */
 .loading {
     display: inline-block;
     width: 20px;
@@ -1011,25 +1045,9 @@ input:invalid {
     text-decoration: underline;
 }
 
-/* أنيميشن التحميل */
-.loading {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 3px solid rgba(255,255,255,.3);
-    border-radius: 50%;
-    border-top-color: #fff;
-    animation: spin 1s ease-in-out infinite;
-}
 
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+
 
 @keyframes fadeInUp {
     from {
@@ -1053,11 +1071,7 @@ input:invalid {
     }
 }
 
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
+
 
 /* زر العودة للأعلى */
 .scroll-top {
@@ -1228,56 +1242,6 @@ input:invalid {
     transition: width 0.3s ease;
 }
 
-/* تحسين التجاوب مع الهواتف المحمولة */
-@media (max-width: 480px) {
-    .container {
-        padding: 10px;
-    }
 
-    header {
-        padding: 10px 15px;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .logo-container {
-        order: 1;
-    }
-
-    nav {
-        order: 2;
-        width: 100%;
-    }
-
-    nav ul {
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    nav a {
-        padding: 12px;
-        text-align: center;
-        border-radius: var(--border-radius);
-        background: var(--bg-color);
-    }
-
-    .hero-section h1 {
-        font-size: 24px;
-    }
-
-    .hero-section p {
-        font-size: 16px;
-    }
-
-    .products-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    .form-container {
-        padding: 20px;
-        margin: 10px;
-    }
-}
 
 
