@@ -12,17 +12,23 @@ if ($_SESSION['role'] !== 'admin') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    require_once('connect.php');
+    require_once('../connect.php');
+    // var_dump($_FILES);
+    $id = $_POST['id'];
     $name = $_POST['name'];
     $img = '';
     $description = $_POST['description'];
-    $price = $_POST['price'];
 
     if($_FILES['img']['error'] == 0){
         $img = $_FILES['img']['name'];
         move_uploaded_file($_FILES['img']['tmp_name'], 'images/'.$img);
     }
-    $sql = "INSERT INTO `product` (`name`,`img`,`description`,`price`) VALUES('$name','$img', '$description','$price')";
+    if($img == ''){
+        $sql = "UPDATE category SET name='$name',description = '$description' WHERE c_id = $id";
+    }
+    else{
+        $sql = "UPDATE category SET name='$name',img = '$img',description = '$description' WHERE c_id = $id";
+    }
     if(mysqli_query($conn, $sql))
     {
         echo 'succed';
@@ -31,4 +37,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     echo 'error';
   }
 }
-header ('Location: product_show.php');
+header ('Location: category.php');

@@ -12,17 +12,17 @@ if ($_SESSION['role'] !== 'admin') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    require_once('connect.php');
-    $id = $_POST['id'];
-    if(isset($_POST['yes'])){
-        $sql = "DELETE FROM admin WHERE a_id = $id";
-        if(mysqli_query($conn, $sql))
-        {
-            echo 'succed';
-        }
+    require_once('../connect.php');
+    $name = $_POST['name'];
+    $email = $row_cat['email'];
+    $password = $row_cat['password'];
+    $sql = "INSERT INTO user (name,email,password,) VALUES('$name', 'email', '$password')";
+    if(mysqli_query($conn, $sql))
+    {
+        echo 'succed';
     }
   else{
     echo 'error';
   }
 }
-header ('Location: admin.php');
+header ('Location: user_show.php');

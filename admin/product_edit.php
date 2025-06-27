@@ -16,28 +16,28 @@ if ($_SESSION['role'] !== 'admin') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إضافة صنف</title>
+    <title>إضافة منتج</title>
     <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
 <?php
-require_once('connect.php');
-$id = mysqli_real_escape_string($conn, $_GET['id']);
-$sql = "SELECT * FROM category WHERE c_id = '" . $_GET['id'] . "'";;
+require_once('../connect.php');
+$sql = "SELECT * FROM `product` WHERE p_id = " . $_GET['id'];
 $res_cat = mysqli_query($conn, $sql);
 if($row_cat = mysqli_fetch_assoc($res_cat)) {
     $name = $row_cat['name'];
     $description = $row_cat['description'];
     $img = $row_cat['img'];
+    $price = $row_cat['price'];
 
 // include('include/header.php');
 // include('include/menu.php');
 ?>
-    <form action="category_update.php" method="post" enctype="multipart/form-data">
+    <form action="product_update.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
         <table class="form">
-            <caption>تعديل صنف</caption>
+            <caption>تعديل منتج</caption>
             <tr>
                 <td><label for="name">الاسم:</label></td>
                 <td><input type="text" name="name" id="name" value="<?php echo $name;?>"></td>
@@ -54,6 +54,10 @@ if($row_cat = mysqli_fetch_assoc($res_cat)) {
             <tr>
                 <td><label for="description">الوصف:</label></td>
                 <td><textarea name="description" id="description" cols="40" rows="10"><?php echo $description;?></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="price">السعر:</label></td>
+                <td><input type="number" step="0.1" name="price" id="price" value="<?php echo $price;?>"></td>
             </tr>
             <tr>
                 <td colspan="2"><input type="submit" name="submit" value="تعديل"></td>

@@ -21,7 +21,7 @@ if ($_SESSION['role'] !== 'admin') {
 </head>
 <body>
 <?php
-require_once('connect.php');
+require_once('../connect.php');
 
 
 $sql = "SELECT  u_id ,name , email, password FROM user";

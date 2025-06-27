@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    require_once('connect.php');
+    require_once('../connect.php');
 
     $id = (int)$_POST['id'];
     $name = $_POST['name'];

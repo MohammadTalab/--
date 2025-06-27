@@ -11,7 +11,7 @@ session_start();
 </head>
 <body>
 <?php
-require_once('connect.php');
+require_once('../connect.php');
 
 if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
     echo 'مرحبا بك يا '.$_SESSION['name'];

@@ -12,7 +12,7 @@ session_start();
 <body>
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    require_once('connect.php');
+    require_once('../connect.php');
     $user = $_POST['user'];
     $pass = $_POST['pass'];
     $sql = "SELECT * FROM `admin` WHERE `username` = '$user' AND `password` = '$pass'";

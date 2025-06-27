@@ -26,7 +26,7 @@
 <?php
 //include_once('header.php');
 //include_once('menu.php');
-require_once('connect.php');
+require_once('../connect.php');
 
 
 $sql = "SELECT name, description, img, price FROM product";

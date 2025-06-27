@@ -162,7 +162,7 @@ $featuredProducts = array_slice($products, 0, 3);
 </head>
 <body>
     <?php
-    require_once('connect.php');
+    require_once('../connect.php');
     $sql = "SELECT * FROM product";
     $res = mysqli_query($conn, $sql);
     ?>

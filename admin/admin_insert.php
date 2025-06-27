@@ -12,13 +12,11 @@ if ($_SESSION['role'] !== 'admin') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    require_once('connect.php');
-    $id = $_POST['id'];
+    require_once('../connect.php');
     $name = $_POST['name'];
-    $username = $_POST['user name'];
+    $username = $_POST['username'];
     $password = $_POST['password'];
-    
-    $sql = "UPDATE admin SET name='$name', $username =$email , password =$password WHERE u_id = $id";
+    $sql = "INSERT INTO admin (name,username,password) VALUES('$name', '$username', '$password')";
     if(mysqli_query($conn, $sql))
     {
         echo 'succed';
@@ -27,4 +25,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     echo 'error';
   }
 }
-header ('Location: admin.php');
+header ('Location: admin_show.php');
