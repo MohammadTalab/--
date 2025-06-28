@@ -140,6 +140,51 @@ $featuredProducts = array_slice($products, 0, 3);
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
+
+                <!-- منتجات إضافية -->
+                <div class="product-card">
+                    <img src="images/1.PNG" alt="منتج مميز 1">
+                    <h3>زيت زيتون فلسطيني</h3>
+                    <p class="price">45.00 شيكل</p>
+                    <form method="post" style="display: inline;">
+                        <input type="hidden" name="product_id" value="101">
+                        <input type="hidden" name="price" value="45.00">
+                        <button type="submit" name="add_to_cart" class="btn">إضافة للسلة</button>
+                    </form>
+                </div>
+
+                <div class="product-card">
+                    <img src="images/3.jpg" alt="منتج مميز 2">
+                    <h3>عسل طبيعي جبلي</h3>
+                    <p class="price">85.00 شيكل</p>
+                    <form method="post" style="display: inline;">
+                        <input type="hidden" name="product_id" value="102">
+                        <input type="hidden" name="price" value="85.00">
+                        <button type="submit" name="add_to_cart" class="btn">إضافة للسلة</button>
+                    </form>
+                </div>
+
+                <div class="product-card">
+                    <img src="images/4.jpg" alt="منتج مميز 3">
+                    <h3>تمر مجهول فاخر</h3>
+                    <p class="price">35.00 شيكل</p>
+                    <form method="post" style="display: inline;">
+                        <input type="hidden" name="product_id" value="103">
+                        <input type="hidden" name="price" value="35.00">
+                        <button type="submit" name="add_to_cart" class="btn">إضافة للسلة</button>
+                    </form>
+                </div>
+
+                <div class="product-card">
+                    <img src="images/6.jpg" alt="منتج مميز 4">
+                    <h3>صابون زيت الزيتون</h3>
+                    <p class="price">15.00 شيكل</p>
+                    <form method="post" style="display: inline;">
+                        <input type="hidden" name="product_id" value="104">
+                        <input type="hidden" name="price" value="15.00">
+                        <button type="submit" name="add_to_cart" class="btn">إضافة للسلة</button>
+                    </form>
+                </div>
             </div>
         </section>
     </main>
