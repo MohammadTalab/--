@@ -85,7 +85,7 @@ $featuredProducts = array_slice($products, 0, 3);
 <body>
     <header>
         <div class="logo-container">
-            <img src="images/logo.png" alt="شعار المتجر" class="logo-img" onerror="this.style.display='none'">
+            <img src="images/LOGO.jpg" alt="شعار متجر خير بلادك" class="logo-img">
             <a href="index.php" class="logo-text">متجر خير بلادك</a>
         </div>
         <nav>

@@ -48,7 +48,7 @@ if ($_POST) {
 <body>
     <header>
         <div class="logo-container">
-            <img src="../images/LOGO.jpg" alt="شعار متجر خير بلادك" class="logo-img">
+            <img src="images/LOGO.jpg" alt="شعار متجر خير بلادك" class="logo-img">
             <a href="index.php" class="logo-text">متجر خير بلادك</a>
         </div>
         <nav>

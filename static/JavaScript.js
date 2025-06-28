@@ -171,14 +171,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // تأثير للوجو
+    // تأثير للوجو الجديد - نبضة وتوهج
     const logo = document.querySelector('.logo-img');
     if (logo) {
         logo.addEventListener('click', function() {
-            this.style.animation = 'spin 0.5s ease-in-out';
+            this.style.animation = 'logoGlow 0.8s ease-in-out';
             setTimeout(() => {
                 this.style.animation = '';
-            }, 500);
+            }, 800);
         });
     }
 

@@ -17,7 +17,7 @@ if (isset($_POST['add_cart'])) {
     <header>
         <div class="container">
             <div class="logo-container">
-                <img src="images/logo.png" alt="شعار متجر خير بلادك" class="logo-img">
+                <img src="images/LOGO.jpg" alt="شعار متجر خير بلادك" class="logo-img">
                 <span class="logo-text">متجر خير بلادك</span>
             </div>
             

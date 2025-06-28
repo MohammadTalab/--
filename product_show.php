@@ -9,7 +9,7 @@
 <body>
     <header>
         <div class="logo-container">
-            <img src="../images/LOGO.jpg" alt="شعار متجر خير بلادك" class="logo-img">
+            <img src="images/LOGO.jpg" alt="شعار متجر خير بلادك" class="logo-img">
             <a href="index.php" class="logo-text">متجر خير بلادك</a>
         </div>
         <nav>
@@ -26,7 +26,7 @@
 <?php
 //include_once('header.php');
 //include_once('menu.php');
-require_once('../connect.php');
+require_once('connect.php');
 
 
 $sql = "SELECT name, description, img, price FROM product";
@@ -45,9 +45,9 @@ $res = mysqli_query($conn, $sql);
 
     while ($row = mysqli_fetch_assoc($res)) {
         echo '<tr>';
-        echo '<td><strong>' .$row['name'] . '</strong></td>';
-        echo '<td>' .$row['description'] . '</td>';
-        echo '<td><img src="images/' . $row['img'] . '" alt="صورة المنتج" class="product-img"></td>';
+        echo '<td><strong>' . htmlspecialchars($row['name']) . '</strong></td>';
+        echo '<td>' . nl2br(htmlspecialchars($row['description'])) . '</td>';
+        echo '<td><img src="images/' . htmlspecialchars($row['img']) . '" alt="صورة المنتج" class="product-img"></td>';
         echo '<td><span class="price-tag">' . number_format($row['price'], 2) . ' شيكل</span></td>';
         echo '</tr>';
     }
