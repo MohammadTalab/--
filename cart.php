@@ -36,8 +36,7 @@ if (empty($cart)) {
         echo '<td><a href="remove_cart.php?id=' . (int)$id . '">حذف</a></td>';
         echo '</tr>';
     }
-     echo '<tr>
-        <td colspan="3" style="text-align:right;"><strong>المجموع الكلي</strong></td>
+     echo '<tr><td colspan="3" style="text-align:right;"><strong>المجموع الكلي</strong></td>
         <td colspan="2"><strong>' . number_format($total, 2) . ' شيكل</strong></td>
     </tr>';
 
