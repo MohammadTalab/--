@@ -1,14 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
-if ($_SESSION['role'] !== 'admin') {
-    echo "لا تملك صلاحية الوصول لهذه الصفحة.";
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -19,10 +8,7 @@ if ($_SESSION['role'] !== 'admin') {
     <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
-    <?php
-    ?>
 
-    <div><a href="product_add.php" class="btn">Add New product</a></div>
     <table class="show">
         <tr>
             <th>name</th>
@@ -32,7 +18,7 @@ if ($_SESSION['role'] !== 'admin') {
         </tr>
 
         <?php
-        require_once("../connect.php");
+        require_once("connect.php");
         $sql = "SELECT * FROM product";
         $res_product = mysqli_query($conn, $sql);
             $i = 1;
@@ -44,15 +30,12 @@ if ($_SESSION['role'] !== 'admin') {
                 echo "<td>" . $row['description'] . "</td>";
                 echo "<td>" . $row['price'] . "</td>";
                 echo '<td>';
-                echo '<a href="product_edit.php?id='.$row['p_id'].'">Edit</a> ';
-                echo '<a href="product_delete.php?id='.$row['p_id'].'">Delete</a> ';
+                echo '<a href="add_cart.php?id='.$row['p_id'].'">Add to Cart</a> ';
                 echo '</td>';
                 echo "</tr>";
                 $i++;
             }
         ?>
     </table>
-
-  <?php// include_once("include/footer.php"); ?>
 </body>
 </html>
