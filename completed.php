@@ -23,7 +23,7 @@
       <h2>معلومات الشحن</h2>
 
       <p>الاسم الكامل:</p>
-      <input type="text"><br><br>
+      <input type="text" name="full_name"><br><br>
 
       <p>رقم الهاتف:</p>
       <input type="tel"><br><br>
@@ -39,16 +39,10 @@
 
     </div>
 
-   <p>طريقة الدفع:</p>
-
-<button>الدفع عند الاستلام</button><br><br>
-<button>بطاقة بنكية</button><br><br>
-
-
 
 
     <br><br>
-    <button class="button">تأكيد الشراء</button>
+    <input type="submit" value="تأكيد الشراء">
   </div>
 
 </body>
