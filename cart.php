@@ -39,9 +39,12 @@ if (empty($cart)) {
      echo '<tr><td colspan="3" style="text-align:right;"><strong>المجموع الكلي</strong></td>
         <td colspan="2"><strong>' . number_format($total, 2) . ' شيكل</strong></td>
     </tr>';
+    echo '</table>';
 
 }
 ?>
 
 <br><br>
 <a href="index.php">العودة للمتجر</a>
+<a href="completed.php">العودة للمتجر</a>
+
