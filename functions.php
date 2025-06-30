@@ -62,7 +62,6 @@ function getCartItems($user_id) {
     return $items;
 }
 
-// دالة لتسجيل دخول المستخدم
 function loginUser($email, $password) {
     global $conn;
     $sql = "SELECT id, name, email, password FROM users WHERE email = ?";
@@ -82,7 +81,6 @@ function loginUser($email, $password) {
     return false;
 }
 
-// دالة لتسجيل مستخدم جديد
 function registerUser($name, $email, $password) {
     global $conn;
     
@@ -93,13 +91,12 @@ function registerUser($name, $email, $password) {
     $check_result = mysqli_stmt_get_result($check_stmt);
     
     if (mysqli_num_rows($check_result) > 0) {
-        return false; // الإيميل موجود مسبقاً
+        return false; 
     }
     
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     
-    // إدراج المستخدم الجديد
     $sql = "INSERT INTO users (name, email, password, created_at) VALUES (?, ?, ?, NOW())";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "sss", $name, $email, $hashed_password);
@@ -115,7 +112,6 @@ function registerUser($name, $email, $password) {
     return false;
 }
 
-// دالة للحصول على جميع الفئات
 function getAllCategories() {
     global $conn;
     $sql = "SELECT * FROM category ORDER BY name";
@@ -129,7 +125,6 @@ function getAllCategories() {
     return $categories;
 }
 
-// دالة لتنظيف البيانات
 function cleanInput($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -137,12 +132,10 @@ function cleanInput($data) {
     return $data;
 }
 
-// دالة للتحقق من تسجيل الدخول
 function isLoggedIn() {
     return isset($_SESSION['user_id']);
 }
 
-// دالة لتسجيل الخروج
 function logout() {
     session_unset();
     session_destroy();

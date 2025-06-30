@@ -97,11 +97,11 @@ $cart = $_SESSION['cart'] ?? [];
         <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك</p>
     </footer>
 
-<<<<<<< HEAD
+
     <script src="static/JavaScript.js"></script>
 </body>
 </html>
-=======
+<?php
         echo '<tr>';
         echo '<td>' . htmlspecialchars($row['name']) . '</td>';
         echo '<td>' . (int)$item['quantity'] . '</td>';
@@ -109,17 +109,16 @@ $cart = $_SESSION['cart'] ?? [];
         echo '<td>' . number_format($subtotal, 2) . ' شيكل</td>';            
         echo '<td><a href="remove_cart.php?id=' . (int)$id . '">حذف</a></td>';
         echo '</tr>';
-    }
+
+    
      echo '<tr><td colspan="3" style="text-align:right;"><strong>المجموع الكلي</strong></td>
         <td colspan="2"><strong>' . number_format($total, 2) . ' شيكل</strong></td>
     </tr>';
     echo '</table>';
 
-}
+
 ?>
 
 <br><br>
 <a href="index.php">العودة للمتجر</a>
 <a href="completed.php">العودة للمتجر</a>
-
->>>>>>> 69689c9a201d8ed2af0952b8a6beec5f6c561e36
