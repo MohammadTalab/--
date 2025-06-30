@@ -1,5 +1,6 @@
 <?php
-session_start();
+$page_title = 'إتمام الطلب - متجر خير بلادك';
+$current_page = 'checkout';
 require_once 'connect.php';
 
 if (!isset($_SESSION['user_id'])) {
@@ -34,4 +35,16 @@ unset($_SESSION['cart']);
 
 header('Location: completed.php');
 exit;
+}
+
+include 'header.php';
 ?>
+
+<main>
+    <div class="checkout-container">
+        <h2>إتمام الطلب</h2>
+        <p>جاري معالجة طلبك...</p>
+    </div>
+</main>
+
+<?php include 'footer.php'; ?>

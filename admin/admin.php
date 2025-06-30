@@ -20,7 +20,14 @@ if ($_SESSION['role'] !== 'admin') {
     <link rel="stylesheet" href="../static/styles.css">
 </head>
 <body>
-    <div><a href="admin_add.php" class="btn">Add New admin</a></div>
+    <?php
+    // عرض رسائل النظام إن وجدت
+    if (isset($_SESSION['message'])) {
+        echo '<div class="message info">' . $_SESSION['message'] . '</div>';
+        unset($_SESSION['message']);
+    }
+    ?>
+    <div><a href="admin_add.php" class="btn">إضافة مشرف جديد</a></div>
     <table class="show">
         <tr>
             <th>u_id</th>
@@ -30,12 +37,13 @@ if ($_SESSION['role'] !== 'admin') {
         </tr>
 
         <?php
-        require_once("connect.php");
+        require_once("../connect.php");
         $sql = "SELECT * FROM admin";
         $res_user = mysqli_query($conn, $sql);
             $i = 1;
             while($row = mysqli_fetch_assoc($res_user)) {
                 echo "<tr>";
+                echo "<td>" . $row['a_id'] . "</td>";
                 echo "<td>" . $row['name'] . "</td>";
                 echo "<td>" . $row['username'] . "</td>";
                 echo "<td>" . $row['password'] . "</td>";

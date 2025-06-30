@@ -29,15 +29,20 @@ session_start();
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     require_once('../connect.php');
-    $user = $_POST['user'];
-    $pass = $_POST['pass'];
+    $user = mysqli_real_escape_string($conn, $_POST['user']);
+    $pass = mysqli_real_escape_string($conn, $_POST['pass']);
     $sql = "SELECT * FROM `admin` WHERE `username` = '$user' AND `password` = '$pass'";
     $res = mysqli_query($conn, $sql);
     if($row = mysqli_fetch_array($res)){
-        $_SESSION['name'] = $row['name'];
+        $_SESSION['user_id'] = $row['a_id'];
+        $_SESSION['user_name'] = $row['name'];
         $_SESSION['role'] = 'admin';
+        
+        $_SESSION['message'] = 'تم تسجيل الدخول بنجاح!';
+        header('Location: admin.php');
+        exit();
     }else{
-        echo '<div class="error">خطأ باسم المستخدم او كلمة المرور</div>';
+        echo '<div class="message error">خطأ في اسم المستخدم أو كلمة المرور</div>';
     }
 }
 

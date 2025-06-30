@@ -1,4 +1,6 @@
 <?php 
 $conn = mysqli_connect('localhost','root','','kheirbiladak');
 
-// var_dump($conn);
+if (!$conn) {
+    die("فشل الاتصال بقاعدة البيانات: " . mysqli_connect_error());
+}

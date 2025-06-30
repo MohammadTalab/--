@@ -1,22 +1,12 @@
 <?php
+$page_title = 'الرئيسية - متجر خير بلادك';
+$current_page = 'home';
 require_once 'connect.php';
-session_start();
+require_once 'functions.php';
 
-function getAllProducts() {
-    global $conn;
-    $sql = "SELECT p.*, c.name as category_name FROM product p 
-            LEFT JOIN category c ON p.c_id = c.c_id 
-            ORDER BY p.p_id";
-    $result = mysqli_query($conn, $sql);
-    $products = [];
-    
-    if ($result && mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-            $products[] = $row;
-        }
-    }
-    return $products;
-}
+include 'header.php';
+
+// تم نقل وظيفة getAllProducts إلى ملف functions.php
 
 function addToCart($user_id, $product_id, $price) {
     global $conn;
@@ -73,35 +63,58 @@ $products = getAllProducts();
 
 $featuredProducts = array_slice($products, 0, 3);
 ?>
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر خير بلادك</title>
-    <link rel="stylesheet" href="static/styles.css">
-</head>
-<body>
-    <header>
-        <div class="logo-container">
-            <img src="images/LOGO.jpg" alt="شعار متجر خير بلادك" class="logo-img">
-            <a href="index.php" class="logo-text">متجر خير بلادك</a>
+<?php
+$page_title = "متجر خير بلادك";
+$current_page = "home";
+include 'header.php';
+?>
+                        <main>
+        <div class="hero">
+            <h1>مرحباً بكم في متجر خير بلادك</h1>
+            <p>أفضل المنتجات المحلية والعالمية بأسعار منافسة وجودة عالية</p>
+            <a href="products.php" class="btn">تصفح المنتجات</a>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.php" class="active">الرئيسية</a></li>
-                <li><a href="products.php">المنتجات</a></li>
-                <li><a href="about.php">من نحن</a></li>
-                <li>
-                    <a href="cart.php">السلة
-                        <?php if (isset($_SESSION['user_id'])):
-                            $cart_count = getCartCount($_SESSION['user_id']);
-                            if ($cart_count > 0): ?>
-                                <span class="cart-count"><?php echo $cart_count; ?></span>
-                        <?php endif; endif; ?>
-                    </a>
-                </li>
-                <?php
+
+        <?php 
+if (isset($_SESSION['message'])) {
+    echo '<div class="message info">' . $_SESSION['message'] . '</div>';
+    unset($_SESSION['message']);
+}
+echo $message; 
+?>
+
+        <section class="featured-products">
+            <h2 class="section-title">منتجات مميزة</h2>
+            <div class="products-grid">
+                <?php foreach ($featuredProducts as $product): ?>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category"><?php echo htmlspecialchars($product['category_name']); ?></div>
+                        <h3 class="product-title"><?php echo htmlspecialchars($product['name']); ?></h3>
+                        <div class="product-price"><?php echo htmlspecialchars($product['price']); ?> شيكل</div>
+                        <p class="product-description"><?php echo htmlspecialchars(substr($product['description'], 0, 100)); ?>...</p>
+                        <div class="product-actions">
+                            <form method="post" action="">
+                                <input type="hidden" name="product_id" value="<?php echo $product['p_id']; ?>">
+                                <input type="hidden" name="price" value="<?php echo $product['price']; ?>">
+                                <button type="submit" name="add_to_cart" class="add-to-cart">إضافة للسلة</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="products.php" class="btn secondary">عرض جميع المنتجات</a>
+            </div>
+        </section>
+    </main>
+
+<?php include 'footer.php'; ?>
+                
                 if (isset($_SESSION['user_id'])): ?>
                     <li><a href="orders.php">طلباتي</a></li>
                     <li><a href="logout.php">تسجيل خروج (<?php echo htmlspecialchars($_SESSION['user_name']); ?>)</a></li>
@@ -188,10 +201,4 @@ $featuredProducts = array_slice($products, 0, 3);
         </section>
     </main>
     
-    <footer>
-        <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك</p>
-    </footer>
-    
-    <script src="static/JavaScript.js"></script>
-</body>
-</html>
+<?php include 'footer.php'; ?>

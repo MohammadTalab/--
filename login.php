@@ -1,38 +1,22 @@
 <?php
+$page_title = 'تسجيل الدخول - متجر خير بلادك';
+$current_page = 'login';
 require_once 'connect.php';
-session_start();
+
+include 'header.php';
 ?>
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول - متجر خير بلادك</title>
-    <link rel="stylesheet" href="static/styles.css">
-</head>
-<body>
-    <header>
-        <div class="logo-container">
-            <img src="images/LOGO.jpg" alt="شعار متجر خير بلادك" class="logo-img">
-            <a href="index.php" class="logo-text">متجر خير بلادك</a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.php">الرئيسية</a></li>
-                <li><a href="products.php">المنتجات</a></li>
-                <li><a href="about.php">من نحن</a></li>
-                <li><a href="cart.php">السلة</a></li>
-                <li><a href="login.php" class="active">تسجيل الدخول</a></li>
-                <li><a href="register.php">تسجيل جديد</a></li>
-            </ul>
-        </nav>
-    </header>
     
        <main>
            <div class="form-container">
                <h2>تسجيل الدخول</h2>
                
                <?php
+               // عرض رسائل النظام إن وجدت
+               if (isset($_SESSION['message'])) {
+                   echo '<div class="message info">' . $_SESSION['message'] . '</div>';
+                   unset($_SESSION['message']);
+               }
+               
                if(isset($_POST['login'])){
                    $email = mysqli_real_escape_string($conn, $_POST['email']);
                    $password = mysqli_real_escape_string($conn, $_POST['password']);
@@ -45,9 +29,13 @@ session_start();
                        $_SESSION['user_id'] = $user['u_id'];
                        $_SESSION['user_name'] = $user['name'];
                        $_SESSION['user_email'] = $user['email'];
-                       echo '<div style="color: green; text-align: center; margin-bottom: 20px;">تم تسجيل الدخول بنجاح! <a href="index.php">العودة للرئيسية</a></div>';
+                       $_SESSION['role'] = $user['role'] ?? 'user';
+                       
+                       $_SESSION['message'] = 'تم تسجيل الدخول بنجاح!';
+                       header("Location: index.php");
+                       exit();
                    } else {
-                       echo '<div style="color: red; text-align: center; margin-bottom: 20px;">البريد الإلكتروني أو كلمة المرور غير صحيحة</div>';
+                       echo '<div class="message error">البريد الإلكتروني أو كلمة المرور غير صحيحة</div>';
                    }
                }
                ?>
@@ -69,10 +57,4 @@ session_start();
            </div>
        </main>
 
-    <footer>
-        <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك</p>
-    </footer>
-
-    <script src="static/JavaScript.js"></script>
-</body>
-</html>
+<?php include 'footer.php'; ?>

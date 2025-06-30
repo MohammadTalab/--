@@ -1,16 +1,17 @@
-<?php>
+<?php
 
-require_once('db.php');
+require_once('connect.php');
 
 function getAllProducts() {
     global $conn;
     $sql = "SELECT p.*, c.name as category_name FROM product p 
-            LEFT JOIN category c ON p.category_id = c.id 
-            ORDER BY p.id DESC";
+            LEFT JOIN category c ON p.c_id = c.c_id 
+            ORDER BY p.p_id";
     $result = mysqli_query($conn, $sql);
     $products = [];
-    if ($result) {
-        while ($row = mysqli_fetch_assoc($result)) {
+    
+    if ($result && mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
             $products[] = $row;
         }
     }
@@ -19,43 +20,47 @@ function getAllProducts() {
 
 function getProduct($id) {
     global $conn;
-    $id = (int)$id;
+    $id = mysqli_real_escape_string($conn, $id);
     $sql = "SELECT p.*, c.name as category_name FROM product p 
-            LEFT JOIN category c ON p.category_id = c.id 
-            WHERE p.id = ?";
-    $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "i", $id);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    return mysqli_fetch_assoc($result);
+            LEFT JOIN category c ON p.c_id = c.c_id 
+            WHERE p.p_id = '$id'";
+    $result = mysqli_query($conn, $sql);
+    $product = null;
+    
+    if ($result && mysqli_num_rows($result) > 0) {
+        $product = mysqli_fetch_assoc($result);
+    }
+    return $product;
 }
 
 function getCartCount($user_id) {
     global $conn;
-    $user_id = (int)$user_id;
-    $sql = "SELECT SUM(quantity) as total FROM cart WHERE user_id = ?";
-    $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "i", $user_id);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    $row = mysqli_fetch_assoc($result);
-    return $row['total'] ?? 0;
+    $user_id = mysqli_real_escape_string($conn, $user_id);
+    $sql = "SELECT COUNT(*) as count FROM order_product op 
+            JOIN `order` o ON op.o_id = o.O_id 
+            WHERE o.u_id = '$user_id' AND o.status = 'cart'";
+    $result = mysqli_query($conn, $sql);
+    
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        return $row['count'];
+    }
+    return 0;
 }
 
 function getCartItems($user_id) {
     global $conn;
-    $user_id = (int)$user_id;
-    $sql = "SELECT c.*, p.name, p.img, p.description 
-            FROM cart c 
-            JOIN product p ON c.product_id = p.id 
-            WHERE c.user_id = ?";
-    $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "i", $user_id);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
+    $user_id = mysqli_real_escape_string($conn, $user_id);
+    $sql = "SELECT op.*, p.name, p.image as img, p.description, p.price 
+            FROM order_product op 
+            JOIN product p ON op.p_id = p.p_id 
+            JOIN `order` o ON op.o_id = o.O_id 
+            WHERE o.u_id = '$user_id' AND o.status = 'cart'";
+    $result = mysqli_query($conn, $sql);
     $items = [];
-    if ($result) {
-        while ($row = mysqli_fetch_assoc($result)) {
+    
+    if ($result && mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
             $items[] = $row;
         }
     }
