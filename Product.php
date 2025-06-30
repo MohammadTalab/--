@@ -30,6 +30,7 @@ if (isset($_POST['add_cart'])) {
                 <li>
                     <a href="cart.php">السلة
                         <?php if (isset($_SESSION['user_id'])):
+                            require_once 'functions.php';
                             $cart_count = getCartCount($_SESSION['user_id']);
                             if ($cart_count > 0): ?>
                                 <span class="cart-count"><?php echo $cart_count; ?></span>

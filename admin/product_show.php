@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>📋 عرض المنتجات - متجر خير بلادك</title>
+    <title>عرض المنتجات - متجر خير بلادك</title>
     <link rel="stylesheet" href="../static/styles.css"/>
 </head>
 <body>
     <header>
         <div class="logo-container">
             <img src="../images/LOGO.jpg" alt="شعار متجر خير بلادك" class="logo-img">
-            <a href="index.php" class="logo-text">متجر خير بلادك</a>
+            <a href="../index.php" class="logo-text">متجر خير بلادك</a>
         </div>
         <nav>
             <ul>
@@ -36,11 +36,11 @@ $res = mysqli_query($conn, $sql);
 
 
     echo '<div class="products-section">';
-    echo '<h2>📋 جميع المنتجات المتوفرة</h2>';
+    echo '<h2>جميع المنتجات المتوفرة</h2>';
     echo '<div class="table-container">';
     echo '<table class="products-table">';
     echo '<thead>';
-    echo '<tr><th>🏷️ اسم المنتج</th><th>📝 الوصف</th><th>🖼️ الصورة</th><th>💰 السعر</th></tr>';
+    echo '<tr><th>اسم المنتج</th><th>الوصف</th><th>الصورة</th><th>السعر</th></tr>';
     echo '</thead>';
     echo '<tbody>';
 
@@ -59,7 +59,9 @@ $res = mysqli_query($conn, $sql);
     </main>
 
     <footer>
-        <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك 🇵🇸</p>
+        <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك</p>
     </footer>
+
+    <script src="../static/JavaScript.js"></script>
 </body>
 </html>

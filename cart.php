@@ -36,7 +36,7 @@ $cart = $_SESSION['cart'] ?? [];
 
     <main>
         <div class="cart-container">
-            <h2>🛒 محتويات السلة</h2>
+            <h2>محتويات السلة</h2>
 
             <?php if (empty($cart)): ?>
                 <div class="empty-cart">
@@ -118,8 +118,10 @@ $cart = $_SESSION['cart'] ?? [];
 }
 ?>
 
-<br><br>
-<a href="index.php">العودة للمتجر</a>
-<a href="completed.php">العودة للمتجر</a>
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك</p>
+    </footer>
 
->>>>>>> 69689c9a201d8ed2af0952b8a6beec5f6c561e36
+    <script src="static/JavaScript.js"></script>
+</body>
+</html>
