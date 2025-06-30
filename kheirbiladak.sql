@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306 
--- Generation Time: 18 يونيو 2025 الساعة 23:24
+-- Generation Time: 30 يونيو 2025 الساعة 22:55
 -- إصدار الخادم: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -24,13 +24,33 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- بنية الجدول `admin`
+--
+
+CREATE TABLE `admin` (
+  `a_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `admin`
+--
+
+INSERT INTO `admin` (`a_id`, `name`, `username`, `password`) VALUES
+(1, 'mohammad', 'Mohammad@gmail.com', '654321');
+
+-- --------------------------------------------------------
+
+--
 -- بنية الجدول `category`
 --
 
 CREATE TABLE `category` (
   `c_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `img` int(255) NOT NULL,
+  `img` varchar(255) NOT NULL,
   `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -39,9 +59,17 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`c_id`, `name`, `img`, `description`) VALUES
-(1, 'إلكترونيات', 255, 'أجهزة إلكترونية متنوعة'),
-(2, 'ملابس', 255, 'ملابس رجالية ونسائية'),
-(3, 'مستلزمات منزلية', 255, 'أدوات ومستلزمات للمنزل');
+(1, 'إلكترونيات', '255', 'أجهزة إلكترونية متنوعة'),
+(2, 'ملابس', '255', 'ملابس رجالية ونسائية'),
+(3, 'مستلزمات منزلية', '6.jpg', 'edit'),
+(4, 'طعام', '0', 'وصف الطعام'),
+(5, 'طعام', '0', 'وصف الطعام'),
+(6, 'ملابس', '0', 'وصف الملابس'),
+(8, 'ملابس', '0', 'وصف الملابس'),
+(9, 'ملابس', '0', 'وصف الملابس'),
+(10, 'ملابس', '0', 'وصف الملابس'),
+(11, 'ملابس1', 'التقاط.PNG', 'وصف الملابس1'),
+(12, 'ملابس', '3.jpg', 'وصف الملابس');
 
 -- --------------------------------------------------------
 
@@ -68,16 +96,19 @@ CREATE TABLE `order` (
   `order_date` date NOT NULL,
   `address` varchar(255) NOT NULL,
   `status` varchar(50) NOT NULL,
-  `price` decimal(10,2) NOT NULL,
-  `u_id` int(11) NOT NULL
+  `u_id` int(11) NOT NULL,
+  `fullname` varchar(250) NOT NULL,
+  `num-id` varchar(15) NOT NULL,
+  `location` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- إرجاع أو استيراد بيانات الجدول `order`
 --
 
-INSERT INTO `order` (`O_id`, `order_date`, `address`, `status`, `price`, `u_id`) VALUES
-(3, '2025-06-16', 'حزما, حزما, 504', 'قيد المعالجة', 8069.95, 1);
+INSERT INTO `order` (`O_id`, `order_date`, `address`, `status`, `u_id`, `fullname`, `num-id`, `location`) VALUES
+(3, '2025-06-16', 'حزما, حزما, 504', 'قيد المعالجة', 1, '', '0', ''),
+(4, '2025-06-22', '', 'cart', 2, '', '0', '');
 
 -- --------------------------------------------------------
 
@@ -98,7 +129,9 @@ CREATE TABLE `order_product` (
 
 INSERT INTO `order_product` (`p_id`, `o_id`, `count`, `price`) VALUES
 (1, 3, 2, 999.99),
-(2, 3, 2, 2499.99);
+(1, 4, 1, 999.99),
+(2, 3, 2, 2499.99),
+(2, 4, 1, 2499.99);
 
 -- --------------------------------------------------------
 
@@ -125,7 +158,9 @@ INSERT INTO `product` (`p_id`, `name`, `description`, `img`, `price`, `c_id`) VA
 (3, 'قميص قطني', 'قميص قطني مريح وأنيق', 'shirt.jpg', 89.99, 2),
 (4, 'حذاء رياضي', 'حذاء رياضي مريح للمشي', 'shoes.jpg', 199.99, 2),
 (5, 'طقم أواني طبخ', 'طقم أواني طبخ من الستانلس ستيل', 'cookware.jpg', 299.99, 3),
-(6, 'مكنسة كهربائية', 'مكنسة كهربائية قوية للتنظيف', 'vacuum.jpg', 399.99, 3);
+(6, 'مكنسة كهربائية', 'مكنسة كهربائية قوية للتنظيف', 'vacuum.jpg', 399.99, 3),
+(8, 'pr112', 'puhdpiuh12', '3.jpg', 22.00, 0),
+(9, 'ادم', 'ادم', '1.PNG', 99999999.99, 0);
 
 -- --------------------------------------------------------
 
@@ -145,11 +180,21 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`u_id`, `name`, `email`, `password`) VALUES
-(1, 'ali', 'ali@gmail.com', '123');
+(1, 'ali', 'ali@gmail.com', '123'),
+(2, 'mohammad', 'Mohammad@gmail.com', 'moh771.com'),
+(3, 'moh', 'root@gmail.com', '$2y$10$zG9HvLDFgUcY5RiNdvkyvOJ9.F19YTp/UTWbflYA4e7LXSvinu93K'),
+(4, 'mohammad', 'hadarawerwer@gmail.com', '123456');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`a_id`),
+  ADD UNIQUE KEY `email` (`username`);
 
 --
 -- Indexes for table `category`
@@ -193,10 +238,16 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `a_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `discount`
@@ -208,19 +259,19 @@ ALTER TABLE `discount`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `O_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `O_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

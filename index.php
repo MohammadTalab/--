@@ -1,108 +1,221 @@
 <?php
-$page_title = 'الرئيسية - متجر خير بلادك';
-$current_page = 'home';
-require_once 'connect.php';
-require_once 'functions.php';
+/**
+ * Home Page
+ * Main landing page for the e-commerce site
+ */
 
-include 'header.php';
+// Page configuration
+$page_title = 'الرئيسية - ' . APP_NAME;
+$page_description = 'مرحباً بكم في متجر خير بلادك - أفضل المنتجات المحلية والعالمية بأسعار منافسة وجودة عالية';
 
-function addToCart($user_id, $product_id, $price) {
-    global $conn;
-    $user_id = mysqli_real_escape_string($conn, $user_id);
-    $product_id = mysqli_real_escape_string($conn, $product_id);
-    $price = mysqli_real_escape_string($conn, $price);
+// Include required files
+require_once 'config/config.php';
+require_once 'models/Product.php';
+require_once 'models/Category.php';
+require_once 'models/Cart.php';
+
+// Initialize models
+$productModel = new Product();
+$categoryModel = new Category();
+
+// Get featured products
+$featuredProducts = $productModel->getFeatured(6);
+
+// Get categories with product count
+$categories = $categoryModel->getWithProductCount();
+
+// Handle add to cart form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
+    if (!isLoggedIn()) {
+        setFlashMessage('error', 'يجب تسجيل الدخول أولاً لإضافة المنتجات للسلة');
+        redirect('/login.php');
+    }
     
-    $check_cart_sql = "SELECT O_id FROM `order` WHERE u_id = '$user_id' AND status = 'cart' LIMIT 1";
-    $cart_result = mysqli_query($conn, $check_cart_sql);
+    if (!verifyCSRFToken($_POST['csrf_token'] ?? '')) {
+        setFlashMessage('error', 'خطأ في التحقق من الأمان');
+        redirect('/');
+    }
     
-    if ($cart_result && mysqli_num_rows($cart_result) > 0) {
-        $cart_row = mysqli_fetch_assoc($cart_result);
-        $cart_id = $cart_row['O_id'];
-    } else {
-        $order_date = date('Y-m-d');
-        $create_cart_sql = "INSERT INTO `order` (order_date, address, status, price, u_id) VALUES ('$order_date', '', 'cart', 0, '$user_id')";
-        if (mysqli_query($conn, $create_cart_sql)) {
-            $cart_id = mysqli_insert_id($conn);
-        } else {
-            return false;
+    try {
+        $cart = new Cart();
+        $productId = (int)($_POST['product_id'] ?? 0);
+        $quantity = (int)($_POST['quantity'] ?? 1);
+        
+        if ($productId <= 0 || $quantity <= 0) {
+            throw new Exception('بيانات غير صحيحة');
         }
+        
+        $cart->addItem($_SESSION['user_id'], $productId, $quantity);
+        setFlashMessage('success', 'تم إضافة المنتج للسلة بنجاح');
+        
+    } catch (Exception $e) {
+        setFlashMessage('error', $e->getMessage());
     }
     
-    $check_product_sql = "SELECT count FROM order_product WHERE o_id = '$cart_id' AND p_id = '$product_id'";
-    $product_result = mysqli_query($conn, $check_product_sql);
-    
-    if ($product_result && mysqli_num_rows($product_result) > 0) {
-        $product_row = mysqli_fetch_assoc($product_result);
-        $new_count = $product_row['count'] + 1;
-        $update_sql = "UPDATE order_product SET count = '$new_count' WHERE o_id = '$cart_id' AND p_id = '$product_id'";
-        return mysqli_query($conn, $update_sql);
-    } else {
-        $insert_sql = "INSERT INTO order_product (p_id, o_id, count, price) VALUES ('$product_id', '$cart_id', 1, '$price')";
-        return mysqli_query($conn, $insert_sql);
-    }
+    redirect('/');
 }
 
-$message = '';
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
-    if (!isset($_SESSION['user_id'])) {
-        $message = '<div style="color: red; text-align: center; margin-bottom: 20px;">يجب تسجيل الدخول أولاً لإضافة المنتجات للسلة</div>';
-    } else {
-        $product_id = $_POST['product_id'];
-        $price = $_POST['price'];
-        if (addToCart($_SESSION['user_id'], $product_id, $price)) {
-            $message = '<div style="color: green; text-align: center; margin-bottom: 20px;">تم إضافة المنتج للسلة بنجاح</div>';
-        } else {
-            $message = '<div style="color: red; text-align: center; margin-bottom: 20px;">خطأ في إضافة المنتج للسلة</div>';
-        }
-    }
-}
-
-$products = getAllProducts();
-$featuredProducts = array_slice($products, 0, 3);
-?>
-<main>
-    <div class="hero">
-        <h1>مرحباً بكم في متجر خير بلادك</h1>
-        <p>أفضل المنتجات المحلية والعالمية بأسعار منافسة وجودة عالية</p>
-        <a href="index.php" class="btn">تصفح المنتجات</a>
-    </div>
-
-    <?php 
-if (isset($_SESSION['message'])) {
-    echo '<div class="message info">' . $_SESSION['message'] . '</div>';
-    unset($_SESSION['message']);
-}
-echo $message; 
+// Include header
+include 'includes/header.php';
 ?>
 
-    <section class="featured-products">
-        <h2 class="section-title">منتجات مميزة</h2>
-        <div class="products-grid">
-            <?php foreach ($featuredProducts as $product): ?>
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="images/<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">مرحباً بكم في متجر خير بلادك</h1>
+                <p class="hero-description">
+                    وجهتك الأولى للتسوق الإلكتروني. نقدم أفضل المنتجات المحلية والعالمية 
+                    بأسعار منافسة وجودة عالية مع خدمة عملاء مميزة.
+                </p>
+                <div class="hero-actions">
+                    <a href="/products.php" class="btn btn-primary btn-lg">
+                        <i class="fas fa-shopping-bag"></i>
+                        تصفح المنتجات
+                    </a>
+                    <a href="/categories.php" class="btn btn-outline btn-lg">
+                        <i class="fas fa-th-large"></i>
+                        استكشف الفئات
+                    </a>
                 </div>
-                <div class="product-info">
-                    <div class="product-category"><?php echo htmlspecialchars($product['category_name']); ?></div>
-                    <h3 class="product-title"><?php echo htmlspecialchars($product['name']); ?></h3>
-                    <div class="product-price"><?php echo htmlspecialchars($product['price']); ?> شيكل</div>
-                    <p class="product-description"><?php echo htmlspecialchars(substr($product['description'], 0, 100)); ?>...</p>
-                    <div class="product-actions">
-                        <form method="post" action="">
-                            <input type="hidden" name="product_id" value="<?php echo $product['p_id']; ?>">
-                            <input type="hidden" name="price" value="<?php echo $product['price']; ?>">
-                            <button type="submit" name="add_to_cart" class="add-to-cart">إضافة للسلة</button>
-                        </form>
+            </div>
+            <div class="hero-image">
+                <img src="/assets/images/hero-image.jpg" alt="متجر خير بلادك" class="hero-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="categories-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">فئات المنتجات</h2>
+            <p class="section-description">اكتشف مجموعتنا المتنوعة من المنتجات عالية الجودة</p>
+        </div>
+        
+        <div class="categories-grid">
+            <?php foreach ($categories as $category): ?>
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="<?php echo getFileUrl($category['img'], 'categories'); ?>" 
+                         alt="<?php echo e($category['name']); ?>" 
+                         class="category-img">
+                </div>
+                <div class="category-content">
+                    <h3 class="category-name"><?php echo e($category['name']); ?></h3>
+                    <p class="category-description"><?php echo e($category['description']); ?></p>
+                    <div class="category-meta">
+                        <span class="product-count"><?php echo $category['product_count']; ?> منتج</span>
                     </div>
+                    <a href="/products.php?category=<?php echo $category['c_id']; ?>" class="category-link">
+                        تصفح الفئة
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
                 </div>
             </div>
             <?php endforeach; ?>
         </div>
-        <div style="text-align: center; margin-top: 30px;">
-            <a href="index.php" class="btn secondary">عرض جميع المنتجات</a>
-        </div>
-    </section>
-</main>
+    </div>
+</section>
 
-<?php include 'footer.php'; ?>
+<!-- Featured Products Section -->
+<section class="featured-products-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">منتجات مميزة</h2>
+            <p class="section-description">أحدث وأفضل المنتجات المختارة خصيصاً لك</p>
+        </div>
+        
+        <div class="products-grid">
+            <?php foreach ($featuredProducts as $product): ?>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="<?php echo getFileUrl($product['img']); ?>" 
+                         alt="<?php echo e($product['name']); ?>" 
+                         class="product-img">
+                    <div class="product-overlay">
+                        <a href="/product.php?id=<?php echo $product['p_id']; ?>" class="product-link">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="product-content">
+                    <div class="product-category"><?php echo e($product['category_name']); ?></div>
+                    <h3 class="product-name"><?php echo e($product['name']); ?></h3>
+                    <p class="product-description">
+                        <?php echo e(substr($product['description'], 0, 100)); ?>...
+                    </p>
+                    <div class="product-price"><?php echo formatPrice($product['price']); ?></div>
+                    
+                    <?php if (isLoggedIn()): ?>
+                    <form method="post" class="add-to-cart-form">
+                        <input type="hidden" name="csrf_token" value="<?php echo generateCSRFToken(); ?>">
+                        <input type="hidden" name="product_id" value="<?php echo $product['p_id']; ?>">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" name="add_to_cart" class="btn btn-primary btn-sm">
+                            <i class="fas fa-cart-plus"></i>
+                            إضافة للسلة
+                        </button>
+                    </form>
+                    <?php else: ?>
+                    <a href="/login.php" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-sign-in-alt"></i>
+                        تسجيل دخول للشراء
+                    </a>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+        
+        <div class="section-footer">
+            <a href="/products.php" class="btn btn-outline">
+                عرض جميع المنتجات
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section">
+    <div class="container">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shipping-fast"></i>
+                </div>
+                <h3 class="feature-title">شحن سريع</h3>
+                <p class="feature-description">توصيل سريع وآمن لجميع أنحاء فلسطين</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="feature-title">ضمان الجودة</h3>
+                <p class="feature-description">جميع منتجاتنا مضمونة الجودة والصلاحية</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="feature-title">دعم العملاء</h3>
+                <p class="feature-description">فريق دعم متخصص لمساعدتك على مدار الساعة</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-undo"></i>
+                </div>
+                <h3 class="feature-title">إرجاع مجاني</h3>
+                <p class="feature-description">إمكانية الإرجاع المجاني خلال 14 يوم</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<?php include 'includes/footer.php'; ?>
