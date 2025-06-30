@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>📋 عرض المنتجات - متجر خير بلادك</title>
-    <link rel="stylesheet" href="static/styles.css"/>
+    <link rel="stylesheet" href="../static/styles.css"/>
 </head>
 <body>
     <header>
@@ -14,10 +14,11 @@
         </div>
         <nav>
             <ul>
-                <li><a href="index.php">🏠 الرئيسية</a></li>
-                <li><a href="products.php">🛍️ المنتجات</a></li>
-                <li><a href="product_show.php" class="active">📋 عرض المنتجات</a></li>
-                <li><a href="about.php">ℹ️ من نحن</a></li>
+                <li><a href="../index.php">الرئيسية</a></li>
+                <li><a href="../products.php">المنتجات</a></li>
+                <li><a href="product_show.php" class="active">عرض المنتجات (إدارة)</a></li>
+                <li><a href="../about.php">من نحن</a></li>
+                <li><a href="admin.php">لوحة الإدارة</a></li>
             </ul>
         </nav>
     </header>

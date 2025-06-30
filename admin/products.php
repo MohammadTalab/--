@@ -106,7 +106,7 @@ $products = getAllProducts();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>المنتجات - متجر خير بلادك</title>
-    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="../static/styles.css">
 </head>
 <body>
     <header>
@@ -116,25 +116,12 @@ $products = getAllProducts();
         </div>
         <nav>
             <ul>
-                <li><a href="index.php">الرئيسية</a></li>
-                <li><a href="products.php" class="active">المنتجات</a></li>
-                <li><a href="about.php">من نحن</a></li>
-                <li>
-                    <a href="cart.php">السلة
-                        <?php if (isset($_SESSION['user_id'])):
-                            $cart_count = getCartCount($_SESSION['user_id']);
-                            if ($cart_count > 0): ?>
-                                <span class="cart-count"><?php echo $cart_count; ?></span>
-                        <?php endif; endif; ?>
-                    </a>
-                </li>
-                <?php
-                if (isset($_SESSION['user_id'])): ?>
-                    <li><a href="orders.php">طلباتي</a></li>
-                    <li><a href="logout.php">تسجيل خروج (<?php echo htmlspecialchars($_SESSION['user_name']); ?>)</a></li>
-                <?php else: ?>
-                    <li><a href="login.php">تسجيل الدخول</a></li>
-                <?php endif; ?>
+                <li><a href="../index.php">الرئيسية</a></li>
+                <li><a href="products.php" class="active">المنتجات (إدارة)</a></li>
+                <li><a href="../about.php">من نحن</a></li>
+                <li><a href="admin.php">لوحة الإدارة</a></li>
+                <li><a href="../cart.php">السلة</a></li>
+                <li><a href="../logout.php">تسجيل خروج</a></li>
             </ul>
         </nav>
     </header>

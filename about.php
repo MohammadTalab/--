@@ -79,6 +79,6 @@ session_start();
         <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك 🇵🇸</p>
     </footer>
 
-    <script src="static/script.js"></script>
+    <script src="static/JavaScript.js"></script>
 </body>
 </html>

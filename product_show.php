@@ -14,10 +14,12 @@
         </div>
         <nav>
             <ul>
-                <li><a href="index.php">🏠 الرئيسية</a></li>
-                <li><a href="products.php">🛍️ المنتجات</a></li>
-                <li><a href="product_show.php" class="active">📋 عرض المنتجات</a></li>
-                <li><a href="about.php">ℹ️ من نحن</a></li>
+                <li><a href="index.php">الرئيسية</a></li>
+                <li><a href="products.php">المنتجات</a></li>
+                <li><a href="product_show.php" class="active">عرض المنتجات</a></li>
+                <li><a href="about.php">من نحن</a></li>
+                <li><a href="cart.php">السلة</a></li>
+                <li><a href="login.php">تسجيل الدخول</a></li>
             </ul>
         </nav>
     </header>
@@ -58,7 +60,9 @@ $res = mysqli_query($conn, $sql);
     </main>
 
     <footer>
-        <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك 🇵🇸</p>
+        <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك</p>
     </footer>
+
+    <script src="static/JavaScript.js"></script>
 </body>
 </html>

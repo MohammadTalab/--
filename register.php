@@ -99,9 +99,9 @@ if ($_POST) {
     </main>
 
     <footer>
-        <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك 🇵🇸</p>
+        <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك</p>
     </footer>
 
-    <script src="static/script.js"></script>
+    <script src="static/JavaScript.js"></script>
 </body>
 </html>
