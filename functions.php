@@ -1,9 +1,7 @@
-<?php
-// ملف الدوال المساعدة - متجر خير بلادك
+<?php>
 
 require_once('db.php');
 
-// دالة للحصول على جميع المنتجات
 function getAllProducts() {
     global $conn;
     $sql = "SELECT p.*, c.name as category_name FROM product p 
@@ -19,7 +17,6 @@ function getAllProducts() {
     return $products;
 }
 
-// دالة للحصول على منتج واحد
 function getProduct($id) {
     global $conn;
     $id = (int)$id;
@@ -33,7 +30,6 @@ function getProduct($id) {
     return mysqli_fetch_assoc($result);
 }
 
-// دالة للحصول على عدد المنتجات في السلة
 function getCartCount($user_id) {
     global $conn;
     $user_id = (int)$user_id;
@@ -46,7 +42,6 @@ function getCartCount($user_id) {
     return $row['total'] ?? 0;
 }
 
-// دالة للحصول على منتجات السلة
 function getCartItems($user_id) {
     global $conn;
     $user_id = (int)$user_id;
@@ -91,7 +86,6 @@ function loginUser($email, $password) {
 function registerUser($name, $email, $password) {
     global $conn;
     
-    // التحقق من وجود الإيميل
     $check_sql = "SELECT id FROM users WHERE email = ?";
     $check_stmt = mysqli_prepare($conn, $check_sql);
     mysqli_stmt_bind_param($check_stmt, "s", $email);
@@ -102,7 +96,7 @@ function registerUser($name, $email, $password) {
         return false; // الإيميل موجود مسبقاً
     }
     
-    // تشفير كلمة المرور
+
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     
     // إدراج المستخدم الجديد
