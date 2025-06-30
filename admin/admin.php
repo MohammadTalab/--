@@ -16,8 +16,8 @@ if ($_SESSION['role'] !== 'admin') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin List</title>
-    <link rel="stylesheet" href="../style/style.css">
+    <title>لوحة الإدارة - متجر خير بلادك</title>
+    <link rel="stylesheet" href="../static/styles.css">
 </head>
 <body>
     <div><a href="admin_add.php" class="btn">Add New admin</a></div>

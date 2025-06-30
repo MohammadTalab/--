@@ -116,9 +116,9 @@ $featuredProducts = array_slice($products, 0, 3);
     
     <main>
         <section class="hero">
-            <h1>🌟 أهلاً بك في متجر خير بلادك 🌟</h1>
+            <h1>أهلاً بك في متجر خير بلادك</h1>
             <p>اكتشف أجود المنتجات المحلية بأسعار تنافسية وجودة عالية</p>
-            <a href="products.php" class="btn">🛍️ ابدأ التسوق الآن</a>
+            <a href="products.php" class="btn">ابدأ التسوق الآن</a>
         </section>
         
         <?php echo $message; ?>
@@ -190,7 +190,7 @@ $featuredProducts = array_slice($products, 0, 3);
     </main>
     
     <footer>
-        <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك 🇵🇸</p>
+        <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك</p>
     </footer>
     
     <script src="static/JavaScript.js"></script>

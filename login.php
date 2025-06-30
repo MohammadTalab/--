@@ -21,14 +21,16 @@ session_start();
                 <li><a href="index.php">الرئيسية</a></li>
                 <li><a href="products.php">المنتجات</a></li>
                 <li><a href="about.php">من نحن</a></li>
-                <li><a href="register.php">إنشاء حساب</a></li>
+                <li><a href="cart.php">السلة</a></li>
+                <li><a href="login.php" class="active">تسجيل الدخول</a></li>
+                <li><a href="register.php">تسجيل جديد</a></li>
             </ul>
         </nav>
     </header>
     
        <main>
            <div class="form-container">
-               <h2>🔐 تسجيل الدخول</h2>
+               <h2>تسجيل الدخول</h2>
                
                <?php
                if(isset($_POST['login'])){
@@ -66,8 +68,6 @@ session_start();
                </form>
            </div>
        </main>
-    
-        </main>
 
     <footer>
         <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك</p>

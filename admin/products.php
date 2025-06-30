@@ -112,7 +112,7 @@ $products = getAllProducts();
     <header>
         <div class="logo-container">
             <img src="../images/LOGO.jpg" alt="شعار متجر خير بلادك" class="logo-img">
-            <a href="index.php" class="logo-text">متجر خير بلادك</a>
+            <a href="../index.php" class="logo-text">متجر خير بلادك</a>
         </div>
         <nav>
             <ul>
@@ -164,7 +164,7 @@ $products = getAllProducts();
         <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك 🇵🇸</p>
     </footer>
     
-    <script src="static/script.js"></script>
+    <script src="../static/JavaScript.js"></script>
 </body>
 </html>
 

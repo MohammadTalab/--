@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>📋 عرض المنتجات - متجر خير بلادك</title>
+    <title>عرض المنتجات - متجر خير بلادك</title>
     <link rel="stylesheet" href="static/styles.css"/>
 </head>
 <body>
@@ -18,8 +18,25 @@
                 <li><a href="products.php">المنتجات</a></li>
                 <li><a href="product_show.php" class="active">عرض المنتجات</a></li>
                 <li><a href="about.php">من نحن</a></li>
-                <li><a href="cart.php">السلة</a></li>
-                <li><a href="login.php">تسجيل الدخول</a></li>
+                <li>
+                    <a href="cart.php">السلة
+                        <?php
+                        session_start();
+                        if (isset($_SESSION['user_id'])):
+                            require_once 'functions.php';
+                            $cart_count = getCartCount($_SESSION['user_id']);
+                            if ($cart_count > 0): ?>
+                                <span class="cart-count"><?php echo $cart_count; ?></span>
+                        <?php endif; endif; ?>
+                    </a>
+                </li>
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <li><a href="orders.php">طلباتي</a></li>
+                    <li><a href="logout.php">تسجيل خروج (<?php echo htmlspecialchars($_SESSION['user_name']); ?>)</a></li>
+                <?php else: ?>
+                    <li><a href="login.php">تسجيل الدخول</a></li>
+                    <li><a href="register.php">تسجيل جديد</a></li>
+                <?php endif; ?>
             </ul>
         </nav>
     </header>
@@ -37,11 +54,11 @@ $res = mysqli_query($conn, $sql);
 
 
     echo '<div class="products-section">';
-    echo '<h2>📋 جميع المنتجات المتوفرة</h2>';
+    echo '<h2>جميع المنتجات المتوفرة</h2>';
     echo '<div class="table-container">';
     echo '<table class="products-table">';
     echo '<thead>';
-    echo '<tr><th>🏷️ اسم المنتج</th><th>📝 الوصف</th><th>🖼️ الصورة</th><th>💰 السعر</th></tr>';
+    echo '<tr><th>اسم المنتج</th><th>الوصف</th><th>الصورة</th><th>السعر</th></tr>';
     echo '</thead>';
     echo '<tbody>';
 

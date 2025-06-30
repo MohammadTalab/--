@@ -49,7 +49,7 @@ if ($_POST) {
     <header>
         <div class="logo-container">
             <img src="../images/LOGO.jpg" alt="شعار متجر خير بلادك" class="logo-img">
-            <a href="index.php" class="logo-text">متجر خير بلادك</a>
+            <a href="../index.php" class="logo-text">متجر خير بلادك</a>
         </div>
         <nav>
             <ul>
@@ -90,19 +90,19 @@ if ($_POST) {
                     <input type="password" id="confirm_password" name="confirm_password" required minlength="6">
                 </div>
                 
-                <button type="submit" class="btn">📝 إنشاء الحساب</button>
+                <button type="submit" class="btn">إنشاء الحساب</button>
             </form>
             
             <div class="form-links">
-                <p>لديك حساب بالفعل؟ <a href="login.php">🔐 سجل دخولك هنا</a></p>
+                <p>لديك حساب بالفعل؟ <a href="login.php">سجل دخولك هنا</a></p>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك 🇵🇸</p>
+        <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك</p>
     </footer>
 
-    <script src="static/script.js"></script>
+    <script src="../static/JavaScript.js"></script>
 </body>
 </html>

@@ -11,14 +11,14 @@ if ($_POST) {
     $confirm_password = $_POST['confirm_password'];
     
     if ($password !== $confirm_password) {
-        $message = '<div class="message error">❌ كلمات المرور غير متطابقة</div>';
+        $message = '<div class="message error">كلمات المرور غير متطابقة</div>';
     } else {
         // التحقق من وجود الإيميل
         $check_sql = "SELECT id FROM users WHERE email = '$email'";
         $check_result = mysqli_query($conn, $check_sql);
         
         if (mysqli_num_rows($check_result) > 0) {
-            $message = '<div class="message error">❌ هذا الإيميل مسجل مسبقاً</div>';
+            $message = '<div class="message error">هذا الإيميل مسجل مسبقاً</div>';
         } else {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $sql = "INSERT INTO users (name, email, password, created_at) VALUES ('$name', '$email', '$hashed_password', NOW())";
@@ -31,7 +31,7 @@ if ($_POST) {
                 header('Location: index.php');
                 exit();
             } else {
-                $message = '<div class="message error">❌ حدث خطأ في التسجيل</div>';
+                $message = '<div class="message error">حدث خطأ في التسجيل</div>';
             }
         }
     }
@@ -64,28 +64,28 @@ if ($_POST) {
 
     <main>
         <div class="form-container">
-            <h2>📝 إنشاء حساب جديد</h2>
+            <h2>إنشاء حساب جديد</h2>
             
             <?php echo $message; ?>
             
             <form method="post" action="">
                 <div class="form-group">
-                    <label for="name">👤 الاسم الكامل:</label>
+                    <label for="name">الاسم الكامل:</label>
                     <input type="text" id="name" name="name" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="email">📧 البريد الإلكتروني:</label>
+                    <label for="email">البريد الإلكتروني:</label>
                     <input type="email" id="email" name="email" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="password">🔒 كلمة المرور:</label>
+                    <label for="password">كلمة المرور:</label>
                     <input type="password" id="password" name="password" required minlength="6">
                 </div>
                 
                 <div class="form-group">
-                    <label for="confirm_password">🔒 تأكيد كلمة المرور:</label>
+                    <label for="confirm_password">تأكيد كلمة المرور:</label>
                     <input type="password" id="confirm_password" name="confirm_password" required minlength="6">
                 </div>
                 

@@ -1523,6 +1523,27 @@ nav ul li a.active {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
+/* تنسيق صفحة الطلبات */
+.orders-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.empty-orders {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--light-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.empty-orders p {
+    font-size: 18px;
+    color: var(--light-text);
+    margin-bottom: 20px;
+}
+
 
 
 
