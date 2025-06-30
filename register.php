@@ -14,18 +14,16 @@ if ($_POST) {
     if ($password !== $confirm_password) {
         $message = '<div class="message error">كلمات المرور غير متطابقة</div>';
     } else {
-        // التحقق من وجود الإيميل
         $check_sql = "SELECT u_id FROM user WHERE email = '$email'";
         $check_result = mysqli_query($conn, $check_sql);
         
         if (mysqli_num_rows($check_result) > 0) {
             $message = '<div class="message error">هذا الإيميل مسجل مسبقاً</div>';
         } else {
-            // استخدام كلمة المرور كما هي لتتوافق مع طريقة التحقق في صفحة تسجيل الدخول
             $sql = "INSERT INTO user (name, email, password, role) VALUES ('$name', '$email', '$password', 'user')";
             
             if (mysqli_query($conn, $sql)) {
-                $user_id = mysqli_insert_id($conn);
+                
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['user_name'] = $name;
                 $_SESSION['user_email'] = $email;
