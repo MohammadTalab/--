@@ -1,10 +1,10 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['role'])) {
     header("Location: login.php");
     exit();
 }
-if ($_SESSION['role'] !== 'admin') {
+if ($_SESSION['role'] != 'admin') {
     echo "لا تملك صلاحية الوصول لهذه الصفحة.";
     exit();
 }
@@ -25,10 +25,13 @@ if ($_SESSION['role'] !== 'admin') {
     <div><a href="product_add.php" class="btn">Add New product</a></div>
     <table class="show">
         <tr>
+            <th>id</th>
             <th>name</th>
             <th>img</th>
             <th>description</th>
             <th>price</th>
+            <th>delete</th>
+            <th>edit</th>
         </tr>
 
         <?php
@@ -44,7 +47,7 @@ if ($_SESSION['role'] !== 'admin') {
                 echo "<td>" . $row['description'] . "</td>";
                 echo "<td>" . $row['price'] . "</td>";
                 echo '<td>';
-                echo '<a href="product_edit.php?id='.$row['p_id'].'">Edit</a> ';
+                echo '<a href="product_edit.php?id='.$row['p_id'].'">Edit</a>  ';
                 echo '<a href="product_delete.php?id='.$row['p_id'].'">Delete</a> ';
                 echo '</td>';
                 echo "</tr>";

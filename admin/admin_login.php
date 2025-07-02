@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $user = $_POST['user'];
     $pass = $_POST['pass'];
     $sql = "SELECT * FROM `admin` WHERE `username` = '$user' AND `password` = '$pass'";
+    echo $sql;
     $res = mysqli_query($conn, $sql);
     if($row = mysqli_fetch_array($res)){
         $_SESSION['name'] = $row['name'];

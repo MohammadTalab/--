@@ -1,0 +1,38 @@
+table.show{
+    border: 1px solid #ddd;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:20px;
+}
+
+table.show th{
+    padding: 5px;
+    color: #fff;
+ 
+}
+
+table.show td{
+    padding: 20px;
+    text-align: center;
+}
+table.show img{
+    width : 100px;
+}
+table.show a{
+    text-decoration: none;
+    color: #000;
+}
+table.show th{
+    background-color: #0a0a0a;
+}
+table.show tr th{
+    color: #ddd;
+}
+table.show th a{
+    
+
+
+    
+}
+div.a{
+}
