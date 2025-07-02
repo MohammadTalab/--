@@ -15,18 +15,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     require_once('../connect.php');
     $id = $_POST['id'];
     $name = $_POST['name'];
-    $username = $_POST['username'];
+    $username = $_POST['user name'];
     $password = $_POST['password'];
     
-    $sql = "UPDATE admin SET name='$name', username='$username', password='$password' WHERE u_id = $id";
+    $sql = "UPDATE admin SET name='$name', $username =$email , password =$password WHERE u_id = $id";
     if(mysqli_query($conn, $sql))
     {
-        $_SESSION['message'] = 'تم تحديث بيانات المسؤول بنجاح';
+        echo 'succed';
     }
-    else{
-        $_SESSION['message'] = 'حدث خطأ أثناء تحديث البيانات: ' . mysqli_error($conn);
-    }
-    
-    header('Location: admin.php');
-    exit();
+  else{
+    echo 'error';
+  }
 }
+header ('Location: admin.php');

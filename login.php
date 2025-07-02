@@ -1,153 +1,78 @@
 <?php
-/**
- * Login Page
- * User authentication page
- */
-
-// Page configuration
-$page_title = 'تسجيل الدخول - ' . APP_NAME;
-$page_description = 'تسجيل الدخول إلى حسابك في متجر خير بلادك';
-
-// Include required files
-require_once 'config/config.php';
-require_once 'models/User.php';
-
-// Redirect if already logged in
-if (isLoggedIn()) {
-    redirect('/');
-}
-
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!verifyCSRFToken($_POST['csrf_token'] ?? '')) {
-        setFlashMessage('error', 'خطأ في التحقق من الأمان');
-        redirect('/login.php');
-    }
-    
-    $email = cleanInput($_POST['email'] ?? '');
-    $password = $_POST['password'] ?? '';
-    $remember = isset($_POST['remember']);
-    
-    // Validate input
-    $errors = [];
-    
-    if (empty($email)) {
-        $errors[] = 'البريد الإلكتروني مطلوب';
-    } elseif (!validateEmail($email)) {
-        $errors[] = 'البريد الإلكتروني غير صحيح';
-    }
-    
-    if (empty($password)) {
-        $errors[] = 'كلمة المرور مطلوبة';
-    }
-    
-    if (empty($errors)) {
-        try {
-            $userModel = new User();
-            
-            if ($userModel->authenticate($email, $password)) {
-                // Set remember me cookie if requested
-                if ($remember) {
-                    $token = generateRandomString(32);
-                    setcookie('remember_token', $token, time() + (30 * 24 * 60 * 60), '/'); // 30 days
-                }
-                
-                setFlashMessage('success', 'تم تسجيل الدخول بنجاح');
-                
-                // Redirect to intended page or home
-                $redirect = $_GET['redirect'] ?? '/';
-                redirect($redirect);
-            } else {
-                setFlashMessage('error', 'البريد الإلكتروني أو كلمة المرور غير صحيحة');
-            }
-        } catch (Exception $e) {
-            setFlashMessage('error', $e->getMessage());
-        }
-    } else {
-        setFlashMessage('error', implode('<br>', $errors));
-    }
-    
-    redirect('/login.php');
-}
-
-// Include header
-include 'includes/header.php';
+require_once 'connect.php';
+session_start();
 ?>
-
-<div class="auth-container">
-    <div class="auth-card">
-        <div class="auth-header">
-            <div class="auth-logo">
-                <img src="/assets/images/logo.png" alt="<?php echo APP_NAME; ?>" class="auth-logo-img">
-                <h1 class="auth-title">تسجيل الدخول</h1>
-            </div>
-            <p class="auth-subtitle">أدخل بياناتك للوصول إلى حسابك</p>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - متجر خير بلادك</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="images/LOGO.jpg" alt="شعار متجر خير بلادك" class="logo-img">
+            <a href="index.php" class="logo-text">متجر خير بلادك</a>
         </div>
-        
-        <form method="post" class="auth-form" data-validate>
-            <input type="hidden" name="csrf_token" value="<?php echo generateCSRFToken(); ?>">
-            
-            <div class="form-group">
-                <label for="email" class="form-label">البريد الإلكتروني</label>
-                <div class="input-group">
-                    <input type="email" id="email" name="email" class="form-input" 
-                           placeholder="أدخل بريدك الإلكتروني" required
-                           value="<?php echo e($_POST['email'] ?? ''); ?>">
-                    <i class="fas fa-envelope input-icon"></i>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="password" class="form-label">كلمة المرور</label>
-                <div class="input-group">
-                    <input type="password" id="password" name="password" class="form-input" 
-                           placeholder="أدخل كلمة المرور" required>
-                    <i class="fas fa-lock input-icon"></i>
-                    <button type="button" class="password-toggle" onclick="togglePassword('password')">
-                        <i class="fas fa-eye"></i>
-                    </button>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" name="remember" class="checkbox-input">
-                    <span class="checkbox-custom"></span>
-                    تذكرني
-                </label>
-            </div>
-            
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-lg w-full">
-                    <i class="fas fa-sign-in-alt"></i>
-                    تسجيل الدخول
-                </button>
-            </div>
-        </form>
-        
-        <div class="auth-footer">
-            <div class="auth-links">
-                <a href="/forgot-password.php" class="auth-link">نسيت كلمة المرور؟</a>
-                <span class="auth-divider">|</span>
-                <a href="/register.php" class="auth-link">ليس لديك حساب؟ سجل الآن</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-function togglePassword(inputId) {
-    const input = document.getElementById(inputId);
-    const toggle = input.parentNode.querySelector('.password-toggle i');
+        <nav>
+            <ul>
+                <li><a href="index.php">الرئيسية</a></li>
+                <li><a href="products.php">المنتجات</a></li>
+                <li><a href="about.php">من نحن</a></li>
+                <li><a href="cart.php">السلة</a></li>
+                <li><a href="login.php" class="active">تسجيل الدخول</a></li>
+                <li><a href="register.php">تسجيل جديد</a></li>
+            </ul>
+        </nav>
+    </header>
     
-    if (input.type === 'password') {
-        input.type = 'text';
-        toggle.className = 'fas fa-eye-slash';
-    } else {
-        input.type = 'password';
-        toggle.className = 'fas fa-eye';
-    }
-}
-</script>
+       <main>
+           <div class="form-container">
+               <h2>تسجيل الدخول</h2>
+               
+               <?php
+               if(isset($_POST['login'])){
+                   $email = mysqli_real_escape_string($conn, $_POST['email']);
+                   $password = mysqli_real_escape_string($conn, $_POST['password']);
+                   
+                   $sql = "SELECT * FROM `user` WHERE `email` = '$email' AND `password` = '$password'";
+                   $result = mysqli_query($conn, $sql);
+                   
+                   if(mysqli_num_rows($result) > 0){
+                       $user = mysqli_fetch_assoc($result);
+                       $_SESSION['user_id'] = $user['u_id'];
+                       $_SESSION['user_name'] = $user['name'];
+                       $_SESSION['user_email'] = $user['email'];
+                       echo '<div style="color: green; text-align: center; margin-bottom: 20px;">تم تسجيل الدخول بنجاح! <a href="index.php">العودة للرئيسية</a></div>';
+                   } else {
+                       echo '<div style="color: red; text-align: center; margin-bottom: 20px;">البريد الإلكتروني أو كلمة المرور غير صحيحة</div>';
+                   }
+               }
+               ?>
+               
+               <form action="" method="post">
+                   <div class="form-group">
+                       <label for="email">البريد الإلكتروني</label>
+                       <input type="email" id="email" name="email" required>
+                   </div>
+                   <div class="form-group">
+                       <label for="password">كلمة المرور</label>
+                       <input type="password" id="password" name="password" required>
+                   </div>
+                   <button type="submit" name="login" class="btn" style="width: 100%;">تسجيل الدخول</button>
+                   <div class="form-footer">
+                       <p>ليس لديك حساب؟ <a href="register.php">إنشاء حساب جديد</a></p>
+                   </div>
+               </form>
+           </div>
+       </main>
 
-<?php include 'includes/footer.php'; ?>
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك</p>
+    </footer>
+
+    <script src="static/JavaScript.js"></script>
+</body>
+</html>

@@ -1,12 +1,22 @@
 <?php
-$page_title = 'المنتجات - متجر خير بلادك';
-$current_page = 'products';
 require_once 'connect.php';
-require_once 'functions.php';
+session_start();
 
-include 'header.php';
-
-// تم نقل وظيفة getAllProducts إلى ملف functions.php
+function getAllProducts() {
+    global $conn;
+    $sql = "SELECT p.*, c.name as category_name FROM product p 
+            LEFT JOIN category c ON p.c_id = c.c_id 
+            ORDER BY p.p_id";
+    $result = mysqli_query($conn, $sql);
+    $products = [];
+    
+    if ($result && mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $products[] = $row;
+        }
+    }
+    return $products;
+}
 
 function getProductById($id) {
     global $conn;
@@ -38,10 +48,6 @@ function getAllCategories() {
 }
 
 function addToCart($user_id, $product_id, $price) {
-    // الكود الأصلي يستمر هنا
-}
-
-include 'header.php';
     global $conn;
     $user_id = mysqli_real_escape_string($conn, $user_id);
     $product_id = mysqli_real_escape_string($conn, $product_id);
@@ -167,5 +173,11 @@ $products = getAllProducts();
         </div>
     </main>
     
-<?php include 'footer.php'; ?>
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك</p>
+    </footer>
+    
+    <script src="static/JavaScript.js"></script>
+</body>
+</html>
 

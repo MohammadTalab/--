@@ -1,7 +1,6 @@
 <?php
-$page_title = 'تسجيل جديد - متجر خير بلادك';
-$current_page = 'register';
 require_once 'connect.php';
+session_start();
 
 $message = '';
 
@@ -14,33 +13,54 @@ if ($_POST) {
     if ($password !== $confirm_password) {
         $message = '<div class="message error">كلمات المرور غير متطابقة</div>';
     } else {
-        $check_sql = "SELECT u_id FROM user WHERE email = '$email'";
+        // التحقق من وجود الإيميل
+        $check_sql = "SELECT id FROM users WHERE email = '$email'";
         $check_result = mysqli_query($conn, $check_sql);
         
         if (mysqli_num_rows($check_result) > 0) {
             $message = '<div class="message error">هذا الإيميل مسجل مسبقاً</div>';
         } else {
-            $sql = "INSERT INTO user (name, email, password, role) VALUES ('$name', '$email', '$password', 'user')";
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO users (name, email, password, created_at) VALUES ('$name', '$email', '$hashed_password', NOW())";
             
             if (mysqli_query($conn, $sql)) {
-                
+                $user_id = mysqli_insert_id($conn);
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['user_name'] = $name;
                 $_SESSION['user_email'] = $email;
-                $_SESSION['role'] = 'user';
-                $_SESSION['message'] = 'تم إنشاء الحساب بنجاح!';
                 header('Location: index.php');
                 exit();
             } else {
-                $message = '<div class="message error">حدث خطأ في التسجيل: ' . mysqli_error($conn) . '</div>';
+                $message = '<div class="message error">حدث خطأ في التسجيل</div>';
             }
         }
     }
 }
-
-include 'header.php';
 ?>
-
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل جديد - متجر خير بلادك</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="images/LOGO.jpg" alt="شعار متجر خير بلادك" class="logo-img">
+            <a href="index.php" class="logo-text">متجر خير بلادك</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.php">الرئيسية</a></li>
+                <li><a href="products.php">المنتجات</a></li>
+                <li><a href="about.php">من نحن</a></li>
+                <li><a href="login.php">تسجيل الدخول</a></li>
+                <li><a href="register.php" class="active">تسجيل جديد</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main>
         <div class="form-container">
@@ -78,4 +98,10 @@ include 'header.php';
         </div>
     </main>
 
-<?php include 'footer.php'; ?>
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك</p>
+    </footer>
+
+    <script src="static/JavaScript.js"></script>
+</body>
+</html>

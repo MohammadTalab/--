@@ -1,101 +1,126 @@
 <?php
-$page_title = 'السلة - متجر خير بلادك';
-$current_page = 'cart';
 require_once 'connect.php';
-require_once 'functions.php';
+session_start();
+$cart = $_SESSION['cart'] ?? [];
+?>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السلة - متجر خير بلادك</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="images/LOGO.jpg" alt="شعار متجر خير بلادك" class="logo-img">
+            <a href="index.php" class="logo-text">متجر خير بلادك</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.php">الرئيسية</a></li>
+                <li><a href="products.php">المنتجات</a></li>
+                <li><a href="about.php">من نحن</a></li>
+                <li><a href="cart.php" class="active">السلة</a></li>
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <li><a href="orders.php">طلباتي</a></li>
+                    <li><a href="logout.php">تسجيل خروج</a></li>
+                <?php else: ?>
+                    <li><a href="login.php">تسجيل الدخول</a></li>
+                    <li><a href="register.php">تسجيل جديد</a></li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+    </header>
 
-include 'header.php';
+    <main>
+        <div class="cart-container">
+            <h2>محتويات السلة</h2>
 
-if (isset($_SESSION['message'])) {
-    echo '<div class="message info">' . $_SESSION['message'] . '</div>';
-    unset($_SESSION['message']);
-}
+            <?php if (empty($cart)): ?>
+                <div class="empty-cart">
+                    <p>السلة فارغة حالياً</p>
+                    <a href="products.php" class="btn">تصفح المنتجات</a>
+                </div>
+            <?php else: ?>
+                <div class="cart-table-container">
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>المنتج</th>
+                                <th>الكمية</th>
+                                <th>السعر</th>
+                                <th>المجموع</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $total = 0;
+                            foreach ($cart as $id => $item):
+                                $sql = "SELECT * FROM `product` WHERE p_id = $id";
+                                $res = mysqli_query($conn, $sql);
+                                $row = mysqli_fetch_assoc($res);
+                                $subtotal = $row['price'] * $item['quantity'];
+                                $total += $subtotal;
+                            ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($row['name']); ?></td>
+                                <td><?php echo (int)$item['quantity']; ?></td>
+                                <td><?php echo number_format($row['price'], 2); ?> شيكل</td>
+                                <td><?php echo number_format($subtotal, 2); ?> شيكل</td>
+                                <td>
+                                    <a href="remove_cart.php?id=<?php echo (int)$id; ?>" class="btn-remove">حذف</a>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                        <tfoot>
+                            <tr class="total-row">
+                                <td colspan="3"><strong>المجموع الكلي</strong></td>
+                                <td colspan="2"><strong><?php echo number_format($total, 2); ?> شيكل</strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
 
-if (!isset($_SESSION['user_id'])) {
-    echo '<div class="message error">يرجى تسجيل الدخول لعرض سلة التسوق</div>';
-    echo '<div class="empty-cart"><a href="login.php" class="btn">تسجيل الدخول</a></div>';
-} else {
-    $user_id = $_SESSION['user_id'];
-    $cart_sql = "SELECT o.O_id FROM `order` o WHERE o.u_id = '$user_id' AND o.status = 'cart' LIMIT 1";
-    $cart_result = mysqli_query($conn, $cart_sql);
+                <div class="cart-actions">
+                    <a href="products.php" class="btn btn-secondary">متابعة التسوق</a>
+                    <a href="checkout.php" class="btn btn-primary">إتمام الطلب</a>
+                </div>
+            <?php endif; ?>
+        </div>
+    </main>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك</p>
+    </footer>
+
+
+    <script src="static/JavaScript.js"></script>
+</body>
+</html>
+<?php
+        echo '<tr>';
+        echo '<td>' . htmlspecialchars($row['name']) . '</td>';
+        echo '<td>' . (int)$item['quantity'] . '</td>';
+        echo '<td>' . number_format($row['price'], 2) . ' شيكل</td>';
+        echo '<td>' . number_format($subtotal, 2) . ' شيكل</td>';            
+        echo '<td><a href="remove_cart.php?id=' . (int)$id . '">حذف</a></td>';
+        echo '</tr>';
+
     
-    if ($cart_result && mysqli_num_rows($cart_result) > 0) {
-        $cart_row = mysqli_fetch_assoc($cart_result);
-        $cart_id = $cart_row['O_id'];
-        
-        $items_sql = "SELECT op.*, p.name, p.price, p.image FROM order_product op 
-                  JOIN product p ON op.p_id = p.p_id 
-                  WHERE op.o_id = '$cart_id'";
-        $items_result = mysqli_query($conn, $items_sql);
-        
-        $has_items = ($items_result && mysqli_num_rows($items_result) > 0);
+     echo '<tr><td colspan="3" style="text-align:right;"><strong>المجموع الكلي</strong></td>
+        <td colspan="2"><strong>' . number_format($total, 2) . ' شيكل</strong></td>
+    </tr>';
+    echo '</table>';
+
+
 ?>
 
-<main>
-    <div class="cart-container">
-        <h2>محتويات السلة</h2>
+<br><br>
+<a href="index.php">العودة للمتجر</a>
+<a href="completed.php">العودة للمتجر</a>
 
-        <?php if (!$has_items): ?>
-            <div class="empty-cart">
-                <p>السلة فارغة حالياً</p>
-                <a href="index.php" class="btn">تصفح المنتجات</a>
-            </div>
-        <?php else: ?>
-            <div class="cart-table-container">
-                <table class="cart-table">
-                    <thead>
-                        <tr>
-                            <th>المنتج</th>
-                            <th>الكمية</th>
-                            <th>السعر</th>
-                            <th>المجموع</th>
-                            <th>الإجراءات</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $total = 0;
-                        while ($item = mysqli_fetch_assoc($items_result)):
-                            $subtotal = $item['price'] * $item['count'];
-                            $total += $subtotal;
-                        ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($item['name']); ?></td>
-                            <td><?php echo (int)$item['count']; ?></td>
-                            <td><?php echo number_format($item['price'], 2); ?> شيكل</td>
-                            <td><?php echo number_format($subtotal, 2); ?> شيكل</td>
-                            <td>
-                                <a href="remove_cart.php?id=<?php echo (int)$item['p_id']; ?>" class="btn-remove">حذف</a>
-                            </td>
-                        </tr>
-                        <?php endwhile; ?>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="3" class="text-right">المجموع الكلي:</td>
-                            <td><?php echo number_format($total, 2); ?> شيكل</td>
-                            <td></td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-            
-            <div class="cart-actions">
-                <a href="index.php" class="btn secondary">متابعة التسوق</a>
-                <a href="checkout.php" class="btn">إتمام الطلب</a>
-            </div>
-        <?php endif; ?>
-    </div>
-</main>
-
-<?php 
-    } else {
-        echo '<div class="empty-cart">';
-        echo '<p>السلة فارغة حالياً</p>';
-        echo '<a href="index.php" class="btn">تصفح المنتجات</a>';
-        echo '</div>';
-    }
-}
-?>
-
-<?php include 'footer.php'; ?>
+>>>>>>> 69689c9a201d8ed2af0952b8a6beec5f6c561e36
