@@ -31,4 +31,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     echo 'error';
   }
 }
- header ('Location: category_show.php');
+ header ('Location: category.php');

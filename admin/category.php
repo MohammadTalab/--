@@ -1,12 +1,12 @@
 <?php
 session_start();
-
+// print_r($_SESSION);
 if (!isset($_SESSION['role'])) {
     header("Location: admin_login.php");
     exit();
 }
 
-if ($_SESSION['role'] !== 'admin') {
+if ($_SESSION['role'] != 'admin') {
     echo "لا تملك صلاحية الوصول لهذه الصفحة.";
     exit();
 }
@@ -19,7 +19,7 @@ if ($_SESSION['role'] !== 'admin') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إدارة الفئات - متجر خير بلادك</title>
     <link rel="shortcut icon" href="../images/LOGO.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
     <?php
@@ -37,7 +37,7 @@ if ($_SESSION['role'] !== 'admin') {
         </tr>
 
         <?php
-        require_once("connect.php");
+        require_once("../connect.php");
         $sql = "SELECT * FROM category";
         $res_category = mysqli_query($conn, $sql);
             $i = 1;
