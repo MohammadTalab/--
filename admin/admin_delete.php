@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 session_start();
 
@@ -11,6 +12,8 @@ if ($_SESSION['role'] !== 'admin') {
     exit();
 }
 ?>
+=======
+>>>>>>> 0973a6c75c0bfc7c7553b82da342148f84ec5486
 <!DOCTYPE html>
 <html lang="ar">
 <head>

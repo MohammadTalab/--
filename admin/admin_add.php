@@ -1,7 +1,11 @@
 <?php
 session_start();
 
+<<<<<<< HEAD
 if (!isset($_SESSION['role'])) {
+=======
+if (!isset($_SESSION['role'])) {
+>>>>>>> 0973a6c75c0bfc7c7553b82da342148f84ec5486
     header("Location: admin_login.php");
     exit();
 }

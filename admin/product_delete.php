@@ -23,7 +23,7 @@ if ($_SESSION['role'] !== 'admin') {
 <body>
 <?php
 require_once('../connect.php');
-$sql = "SELECT * FROM `product` WHERE p_id = " . $_GET['p_id'];
+$sql = "SELECT * FROM `product` WHERE p_id = " . $_GET['id'];
 $res_cat = mysqli_query($conn, $sql);
 if($row_cat = mysqli_fetch_assoc($res_cat)) {
     $name = $row_cat['name'];
