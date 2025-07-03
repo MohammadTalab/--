@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['role'])) {
     header("Location: admin_login.php");
     exit();
 }
@@ -25,12 +25,12 @@ if ($_SESSION['role'] !== 'admin') {
 require_once('../connect.php');
 $sql = "SELECT * FROM `product` WHERE p_id = " . $_GET['id'];
 $res_cat = mysqli_query($conn, $sql);
-if($row_cat = mysqli_fetch_assoc($res_cat)) {
-    $name = $row_cat['name'];
-    $description = $row_cat['description'];
-    $img = $row_cat['img'];
-    $price = $row_cat['price'];
-
+if($Post = mysqli_fetch_assoc($res_cat)) {
+    $name = $Post['name'];
+    $description = $Post['description'];
+    $img = $Post['img'];
+    $price = $Post['price'];
+}
 // include('include/header.php');
 // include('include/menu.php');
 ?>
@@ -65,7 +65,7 @@ if($row_cat = mysqli_fetch_assoc($res_cat)) {
         </table>
     </form>
 <?php
-}
+
 // include('include/footer.php');
 ?>
 </body>
