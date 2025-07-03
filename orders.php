@@ -4,7 +4,7 @@ require_once 'functions.php';
 session_start();
 
 // التحقق من تسجيل الدخول
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['role'])) {
     header('Location: login.php');
     exit();
 }
