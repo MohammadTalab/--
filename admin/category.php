@@ -45,7 +45,7 @@ if ($_SESSION['role'] != 'admin') {
                 echo "<tr>";
                 echo "<td>" . $i . "</td>";
                 echo "<td>" . $row['name'] . "</td>";
-                echo "<td><img src='images/" . $row['img'] . "' width='50'></td>";
+                echo "<td><img src='../images/" . $row['img'] . "' width='50'></td>";
                 echo "<td>" . $row['description'] . "</td>";
                 echo '<td>';
                 echo '<a href="category_edit.php?id='.$row['c_id'].'">Edit</a> ';
