@@ -18,7 +18,7 @@ if ($_SESSION['role'] !== 'admin') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إضافة منتج - متجر خير بلادك</title>
     <link rel="shortcut icon" href="../images/LOGO.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
     <header>
@@ -26,17 +26,17 @@ if ($_SESSION['role'] !== 'admin') {
             <img src="../images/LOGO.jpg" alt="شعار متجر خير بلادك" class="logo-img">
             <a href="../index.php" class="logo-text">متجر خير بلادك</a>
         </div>
-        <nav>
+        <nav  class="labile-text">
             <ul>
                 <li><a href="../index.php">الرئيسية</a></li>
-                <li><a href="products.php">إدارة المنتجات</a></li>
+                <li><a href="product.php">إدارة المنتجات</a></li>
                 <li><a href="product_add.php" class="active">إضافة منتج</a></li>
                 <li><a href="admin.php">لوحة الإدارة</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
+
     <form action="product_insert.php" method="post" enctype="multipart/form-data">
         <table class="form">
             <caption>إضافة منتج</caption>
@@ -60,6 +60,7 @@ if ($_SESSION['role'] !== 'admin') {
             </tr>
         </table>
     </form>
+
 <?php
 // include('include/footer.php');
 ?>

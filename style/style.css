@@ -1,3 +1,10 @@
+.logo-container .logo-img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 20px auto;
+}
+
 table.show{
     border: 1px solid #ddd;
     margin-left: auto;
@@ -8,7 +15,7 @@ table.show{
 table.show th{
     padding: 5px;
     color: #fff;
- 
+    background-color: #0a0a0a;
 }
 
 table.show td{
@@ -22,17 +29,58 @@ table.show a{
     text-decoration: none;
     color: #000;
 }
-table.show th{
+table.show .delete{
+    color: red; 
+
+
+    
+}
+table.show .edit{
+    color: green;
+}
+
+
+table.form{
+    width: 300px;
+    margin: 30px auto;
+    background-color: #000;
+    border-radius:15px;
+    padding: 15px;
+    color: #fff;
+}
+table.form label{
+    display: block;
+    margin-bottom: 5px;
+    padding : 5px 5px;
+    font-size: 14px;
+
+}
+table.form input{
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+table.form input[type="submit"]{
     background-color: #0a0a0a;
-}
-table.show tr th{
-    color: #ddd;
-}
-table.show th a{
-    
+    color: #fff;
 
-
-    
 }
-div.a{
+table.form textarea{
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+div.labile-text{
+    text-align: center;
+    margin: 20px 0;
+}
+nav.labile-text ul{
+    list-style: none;
+    padding: 0;
+    width: 100%;
 }

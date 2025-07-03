@@ -1,10 +1,12 @@
 <?php
 session_start();
+
 if (!isset($_SESSION['role'])) {
-    header("Location: login.php");
+    header("Location: admin_login.php");
     exit();
 }
-if ($_SESSION['role'] != 'admin') {
+
+if ($_SESSION['role'] !== 'admin') {
     echo "لا تملك صلاحية الوصول لهذه الصفحة.";
     exit();
 }
@@ -47,8 +49,10 @@ if ($_SESSION['role'] != 'admin') {
                 echo "<td>" . $row['description'] . "</td>";
                 echo "<td>" . $row['price'] . "</td>";
                 echo '<td>';
-                echo '<a href="product_edit.php?id='.$row['p_id'].'">Edit</a>  ';
-                echo '<a href="product_delete.php?id='.$row['p_id'].'">Delete</a> ';
+                echo '<a href="product_delete.php?id='.$row['p_id'].'" class="delete">Delete</a> ';
+                echo '</td>';
+                echo '<td>';
+                echo '<a href="product_edit.php?id='.$row['p_id'].'" class="edit">Edit</a>  ';
                 echo '</td>';
                 echo "</tr>";
                 $i++;
