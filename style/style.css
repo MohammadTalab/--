@@ -84,3 +84,27 @@ nav.labile-text ul{
     padding: 0;
     width: 100%;
 }
+
+.container{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.container .item{
+
+}
+.container .item img{
+    width: 120px;
+}
+.container .item h2{
+    
+}
+.container .item p.desc{
+
+}
+.container .item p.price{
+
+}
+.container .item a{
+
+}
