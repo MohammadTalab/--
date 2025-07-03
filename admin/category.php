@@ -19,7 +19,7 @@ if ($_SESSION['role'] !== 'admin') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إدارة الفئات - متجر خير بلادك</title>
     <link rel="shortcut icon" href="../images/LOGO.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
     <?php

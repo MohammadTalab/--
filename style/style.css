@@ -8,7 +8,7 @@ table.show{
 table.show th{
     padding: 5px;
     color: #fff;
- 
+    background-color: #0a0a0a;
 }
 
 table.show td{
@@ -22,17 +22,12 @@ table.show a{
     text-decoration: none;
     color: #000;
 }
-table.show th{
-    background-color: #0a0a0a;
-}
-table.show tr th{
-    color: #ddd;
-}
-table.show th a{
-    
+table.show .delete{
+    color: red; 
 
 
     
 }
-div.a{
+table.show .edit{
+    color: green;
 }

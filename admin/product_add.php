@@ -29,7 +29,7 @@ if ($_SESSION['role'] !== 'admin') {
         <nav>
             <ul>
                 <li><a href="../index.php">الرئيسية</a></li>
-                <li><a href="products.php">إدارة المنتجات</a></li>
+                <li><a href="product.php">إدارة المنتجات</a></li>
                 <li><a href="product_add.php" class="active">إضافة منتج</a></li>
                 <li><a href="admin.php">لوحة الإدارة</a></li>
             </ul>
