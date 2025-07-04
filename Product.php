@@ -19,5 +19,29 @@
         </div>';
     ?>
     </div>
+     <?php
+        require_once("connect.php");
+        $sql = "SELECT * FROM product";
+        $res_product = mysqli_query($conn, $sql);
+            $i = 1;
+            while($row = mysqli_fetch_assoc($res_product)) {
+                echo "<tr>";
+                echo "<td>" . $i . "</td>";
+                echo "<td>" . $row['name'] . "</td>";
+                echo "<td><img src='images/" . $row['img'] . "' width='50'></td>";
+                echo "<td>" . $row['description'] . "</td>";
+                echo "<td>" . $row['price'] . "</td>";
+                echo '<td>';
+                echo '<a href="product_add.php?id='.$row['p_id'].'" class="add">Add</a> ';
+                echo '</td>';
+                echo '<td>';
+                echo '<a href="product_edit.php?id='.$row['p_id'].'" class="edit">Edit</a>  ';
+                echo '</td>';
+                echo "</tr>";
+                $i++;
+            }
+        ?>
+    </table>
+
 </body>
 </html>
