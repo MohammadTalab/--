@@ -87,24 +87,53 @@ nav.labile-text ul{
 
 .container{
     display: flex;
-    gap: 20px;
     flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
 .container .item{
+    width: 260px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
 
+ 
 }
 .container .item img{
-    width: 120px;
+    width: 240px;
+    height: 240px;
+    margin: 10px auto;
+    display: block;
 }
 .container .item h2{
+    text-align:right;
+    margin: 10px;
+    font-size: 18px;
     
 }
 .container .item p.desc{
-
+    text-align:right;
+    font-size: 14px;
+    margin: 10px;
+    color: #000000;
 }
 .container .item p.price{
-
+    text-align:right;
+    font-weight: bold;
+    margin: 10px;
+    color: #e20f0f;
+    padding: 5px;
 }
 .container .item a{
+    background-color: #0a0a0a;
+    text-align: center;
+    border-radius: 5px;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    margin: 10px;
 
 }
