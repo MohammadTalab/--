@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     
     if($_FILES['img']['error'] == 0){
         $img = $_FILES['img']['name'];
-        move_uploaded_file($_FILES['img']['tmp_name'], 'images/'.$img);
+        move_uploaded_file($_FILES['img']['tmp_name'], '../images/'.$img);
     }
     if($img == ''){
         $sql = "UPDATE `product` SET `name`='$name', `price` = '$price',`description` = '$description' WHERE `p_id` = $id" ;

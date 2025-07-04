@@ -67,6 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         <p>جميع الحقوق محفوظة &copy; 2025 - متجر خير بلادك</p>
     </footer>
 
-    <script src="../static/JavaScript.js"></script>
+   
 </body>
 </html>
