@@ -15,6 +15,8 @@
             <th>price</th>
             <th>quantity</th>
             <th>total</th>
+            <th>delete</th>
+            <th>edit</th>
         </tr>
         <tr>
             <td>1</td>
@@ -23,6 +25,9 @@
             <td>15</td>
             <td>2</td>
             <td>30</td>
+            <td><a href="cart_delete.php?id=1" class="delete">Delete</a></td>
+            <td><a href="cart_edit.php?id=1" class="edit">Edit</a></td>
+
         </tr>
         <tr>
             <td>2</td>
@@ -31,6 +36,8 @@
             <td>20</td>
             <td>1</td>
             <td>20</td>
+            <td><a href="cart_delete.php?id=2" class="delete">Delete</a></td>
+            <td><a href="cart_edit.php?id=2" class="edit">Edit
         </tr>
         <tr>
             <th colspan="5">المجموع</th>

@@ -14,14 +14,16 @@ table.show{
 }
 
 table.show th{
-    padding: 5px;
+    width: 12.5%;
+    text-align: center;
+    padding: 8px;
     color: #fff;
     background-color: #0a0a0a;
     border: 1px solid #ddd;
 }
 
 table.show td{
-    padding: 20px;
+    padding: 8px;
     text-align: center;
     border: 1px solid #ddd;
 }
