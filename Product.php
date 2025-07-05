@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,39 +12,24 @@
 <body>
     <div class="container">
         <?php
-        echo '
-        <div class="item">
-            <img src="images/1.PNG" alt="">
-            <h2>عنوان 1</h2>
-            <p class="desc">وصف العنوان 1</p>
-            <p class="price">15</p>
-            <a href="#">إضافة</a>
-        </div>';
-    ?>
-    </div>
-     <?php
+        // $_SESSION['cart'];
+       echo 5;
         require_once("connect.php");
         $sql = "SELECT * FROM product";
         $res_product = mysqli_query($conn, $sql);
-            $i = 1;
-            while($row = mysqli_fetch_assoc($res_product)) {
-                echo "<tr>";
-                echo "<td>" . $i . "</td>";
-                echo "<td>" . $row['name'] . "</td>";
-                echo "<td><img src='images/" . $row['img'] . "' width='50'></td>";
-                echo "<td>" . $row['description'] . "</td>";
-                echo "<td>" . $row['price'] . "</td>";
-                echo '<td>';
-                echo '<a href="product_add.php?id='.$row['p_id'].'" class="add">Add</a> ';
-                echo '</td>';
-                echo '<td>';
-                echo '<a href="product_edit.php?id='.$row['p_id'].'" class="edit">Edit</a>  ';
-                echo '</td>';
-                echo "</tr>";
-                $i++;
-            }
-        ?>
-    </table>
+
+        while($row = mysqli_fetch_assoc($res_product)) {
+            echo '
+            <div class="item">
+                <img src="images/'.$row['img'].'" alt="">
+                <h2>'.$row['name'].'</h2>
+                <p class="desc">'.$row['description'].'</p>
+                <p class="price">'.$row['price'].'</p>
+                <a href="cart_add.php?id='.$row['p_id'].'">add to cart</a>
+            </div>';
+        }
+    ?>
+    </div>
 
 </body>
 </html>

@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $sql = "SELECT * FROM `user` WHERE `email` = '$email' AND `password` = '$pass'";
     $res = mysqli_query($conn, $sql);
     if($row = mysqli_fetch_array($res)){
+        $_SESSION['user_id'] = $row['u_id'];
         $_SESSION['name'] = $row['name'];
         $_SESSION['role'] = 'user';
     }else{

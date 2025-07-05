@@ -20,6 +20,8 @@ if ($_SESSION['role'] !== 'admin') {
     <link rel="stylesheet" href="../static/styles.css">
 </head>
 <body>
+    
+
     <div><a href="admin_add.php" class="btn">Add New admin</a></div>
     <table class="show">
         <tr>
@@ -30,7 +32,7 @@ if ($_SESSION['role'] !== 'admin') {
         </tr>
 
         <?php
-        require_once("connect.php");
+        require_once("../connect.php");
         $sql = "SELECT * FROM admin";
         $res_user = mysqli_query($conn, $sql);
             $i = 1;

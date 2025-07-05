@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,30 +21,34 @@
             <th>delete</th>
             <th>edit</th>
         </tr>
-        <tr>
-            <td>1</td>
-            <td>rpoduct1</td>
-            <td><img src="images/1.png"></td>
-            <td>15</td>
-            <td>2</td>
-            <td>30</td>
-            <td><a href="cart_delete.php?id=1" class="delete">Delete</a></td>
-            <td><a href="cart_edit.php?id=1" class="edit">Edit</a></td>
+        <?php
+        $cart = $_SESSION['cart'];
+        require_once("connect.php");
 
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>product 2</td>
-            <td><img src="images/3.png"></td>
-            <td>20</td>
-            <td>1</td>
-            <td>20</td>
-            <td><a href="cart_delete.php?id=2" class="delete">Delete</a></td>
-            <td><a href="cart_edit.php?id=2" class="edit">Edit
-        </tr>
+        $sum = 0;
+        
+        foreach($cart as $id => $item){
+            $sql = "SELECT * FROM `product` WHERE `p_id` = $id";
+            $res = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_assoc($res);
+            echo '
+            <tr>
+                <td>1</td>
+                <td>'.$row['name'].'</td>
+                <td><img src="images/'.$row['img'].'"></td>
+                <td>'.$row['price'].'</td>
+                <td>'.$item.'</td>
+                <td>'.($row['price']*$item).'</td>
+                <td><a href="cart_delete.php?id='.$id.'" class="delete">Delete</a></td>
+                <td><a href="cart_add.php?id='.$id.'" class="edit">add</a></td>
+
+            </tr>';
+            $sum += $row['price']*$item;
+        }
+        ?>
         <tr>
             <th colspan="5">المجموع</th>
-  <th>50</th>          
+  <th><?php echo $sum;?></th>          
 </tr>
     </table>
 </body>
