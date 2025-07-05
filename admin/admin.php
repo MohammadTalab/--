@@ -20,8 +20,9 @@ if ($_SESSION['role'] !== 'admin') {
     <link rel="stylesheet" href="../static/styles.css">
 </head>
 <body>
-    
-
+<?php
+include_once('../../menu.php');
+?>
     <div><a href="admin_add.php" class="btn">Add New admin</a></div>
     <table class="show">
         <tr>

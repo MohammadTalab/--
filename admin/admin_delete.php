@@ -23,6 +23,7 @@ if ($_SESSION['role'] !== 'admin') {
     <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
+
 <?php
 require_once('../connect.php');
 $id = mysqli_real_escape_string($conn, $_GET['id']);

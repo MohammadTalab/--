@@ -21,8 +21,9 @@ if ($_SESSION['role'] !== 'admin') {
     <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
-    <?php
-    ?>
+<?php
+include_once('menu.php');
+?>
 
     <div><a href="product_add.php" class="btn">Add New product</a></div>
     <table class="show">

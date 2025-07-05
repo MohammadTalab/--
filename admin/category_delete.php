@@ -31,7 +31,7 @@ if($row_cat = mysqli_fetch_assoc($res_cat)) {
     $img = $row_cat['img'];
 
 // include('include/header.php');
-// include('include/menu.php');
+// include('include/../menu.php');
 ?>
     <form action="category_remove.php" method="post">
         <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">

@@ -22,9 +22,12 @@ if ($_SESSION['role'] != 'admin') {
     <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
+<?php
+include_once('../menu.php');
+?>    
     <?php
    // include_once("include/header.php");
-  //  include_once("include/menu.php");
+  //  include_once("include/../menu.php");
     ?>
 
     <div><a href="category_add.php" class="btn">Add New Category</a></div>

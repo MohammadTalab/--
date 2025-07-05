@@ -10,6 +10,9 @@ session_start();
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
+<?php
+include_once('menu.php');
+?>    
     <div class="container">
         <?php
         // $_SESSION['cart'];

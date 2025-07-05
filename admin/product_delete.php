@@ -32,7 +32,7 @@ if($row_cat = mysqli_fetch_assoc($res_cat)) {
     $price = $row_cat['price'];
 
 // include('include/header.php');
-// include('include/menu.php');
+// include('include/../menu.php');
 ?>
     <form action="product_remove.php" method="post">
         <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">

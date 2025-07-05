@@ -23,7 +23,7 @@ if ($_SESSION['role'] !== 'admin') {
 <body>
 <?php
 // include('include/header.php');
-// include('include/menu.php');
+// include('include/../menu.php');
 ?>
     <form action="category_insert.php" method="post" enctype="multipart/form-data">
         <table class="form">

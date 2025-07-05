@@ -21,7 +21,7 @@ if ($_SESSION['role'] !== 'admin') {
 </head>
 <body>
 <?php
-include_once('menu.php');
+include_once('../menu.php');
 ?>
 <?php
 require_once('../connect.php');

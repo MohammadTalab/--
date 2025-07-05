@@ -21,6 +21,9 @@ if ($_SESSION['role'] !== 'admin') {
     <link rel="stylesheet" href="../static/styles.css"/>
 </head>
 <body>
+<?php
+include_once('../menu.php');
+?>
     <header>
         <div class="logo-container">
             <img src="../images/LOGO.jpg" alt="شعار متجر خير بلادك" class="logo-img">
@@ -40,7 +43,7 @@ if ($_SESSION['role'] !== 'admin') {
     <main>
 <?php
 //include_once('header.php');
-//include_once('menu.php');
+//include_once('../menu.php');
 require_once('../connect.php');
 
 

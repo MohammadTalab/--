@@ -26,11 +26,8 @@ if ($_SESSION['role'] !== 'admin') {
     <link rel="stylesheet" href="../style/style.css">
 
 </head>
-
 <body>
-<?php
-include_once('menu.php');
-?>
+
 
     <form action="admin_insert.php" method="post" enctype="multipart/form-data">
 

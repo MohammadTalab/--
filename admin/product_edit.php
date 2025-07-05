@@ -33,7 +33,7 @@ if($Post = mysqli_fetch_assoc($res_cat)) {
     $price = $Post['price'];
 }
 // include('include/header.php');
-// include('include/menu.php');
+// include('include/../menu.php');
 ?>
     <form action="product_update.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
