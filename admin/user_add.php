@@ -21,6 +21,9 @@ if ($_SESSION['role'] !== 'admin') {
     <link rel="stylesheet" href="../style/style.css" />
 </head>
 <body>
+<?php
+include_once('../../menu.php');
+?>    
     <form action="user_insert.php" method="post" enctype="multipart/form-data">
         <table class="form">
             <caption>إضافة مستخدم</caption>

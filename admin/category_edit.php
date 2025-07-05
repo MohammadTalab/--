@@ -22,6 +22,9 @@ if ($_SESSION['role'] !== 'admin') {
 </head>
 <body>
 <?php
+include_once('../../menu.php');
+?>    
+<?php
 require_once('../connect.php');
 $id = mysqli_real_escape_string($conn, $_GET['id']);
 $sql = "SELECT * FROM category WHERE c_id = '" . $_GET['id'] . "'";;

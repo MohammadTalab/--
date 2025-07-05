@@ -22,6 +22,9 @@ if ($_SESSION['role'] !== 'admin') {
 </head>
 <body>
 <?php
+include_once('../../menu.php');
+?>    
+<?php
 // include('include/header.php');
 // include('include/../menu.php');
 ?>

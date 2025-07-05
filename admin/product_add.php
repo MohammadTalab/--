@@ -21,6 +21,9 @@ if ($_SESSION['role'] !== 'admin') {
     <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
+<?php
+include_once('../../menu.php');
+?>    
     <header>
         <div class="logo-container">
             <img src="../images/LOGO.jpg" alt="شعار متجر خير بلادك" class="logo-img">

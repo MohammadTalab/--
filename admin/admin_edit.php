@@ -20,7 +20,9 @@ if ($_SESSION['role'] !== 'admin') {
     <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
-
+<?php
+include_once('../../menu.php');
+?>
 <?php
 require_once('../connect.php');
 $id = $_GET['id'];

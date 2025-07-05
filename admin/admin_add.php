@@ -27,7 +27,9 @@ if ($_SESSION['role'] !== 'admin') {
 
 </head>
 <body>
-
+<?php
+include_once('../../menu.php');
+?>
 
     <form action="admin_insert.php" method="post" enctype="multipart/form-data">
 
